@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathamba Digital Saksham Academy | Rural Digital & AI Literacy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#134074',
+                        darkBlue: '#0b2545',
+                        accent: '#ee6c4d',
+                        lightBg: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-lightBg text-slate-800 font-sans antialiased">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-darkBlue text-slate-200 text-xs sm:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div><i class="fa-solid fa-location-dot text-accent"></i> Near Bus Stand, Sathamba, Bayad Taluka, Aravalli District, Gujarat</div>
+            <div><i class="fa-solid fa-phone text-accent"></i> +91-9876543210</div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-lg leading-tight text-darkBlue uppercase">Sathamba Digital</span>
+                    <span class="block text-xs font-semibold text-accent uppercase tracking-widest">Saksham Academy</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#services" class="hover:text-primary transition">Our Services</a>
+                <a href="#courses" class="hover:text-primary transition">Courses</a>
+                <a href="#admission" class="bg-accent text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-orange-600 transition">Online Admission</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Welcome Banner -->
+    <header class="bg-gradient-to-br from-darkBlue to-primary text-white py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <span class="bg-accent/20 text-accent font-semibold px-4 py-1.5 rounded-full text-sm border border-accent/30">
+                🚀 Founding Batch Admissions Open in Sathamba
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
+                Moving from Digital Literacy to <span class="text-accent">AI Confidence</span>
+            </h1>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+                Empowering students, job seekers, women, and farmers in Aravalli District with practical computer skills, office productivity, and daily AI tools.
+            </p>
+            <div class="pt-4">
+                <a href="#admission" class="bg-accent hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition inline-block">
+                    Apply For Admission Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services & Features Section -->
+    <section id="services" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span class="text-accent font-bold tracking-widest uppercase text-sm">What We Provide</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Our Core Academy Services</h2>
+            <p class="text-slate-600">Designed specifically to bridge the digital divide in rural Gujarat through hands-on learning.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkBlue mb-3">Digital & Computer Basics</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Master computer hardware peripherals, Windows file management, internet navigation, and secure web browsing from scratch.
+                </p>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                    <i class="fa-solid fa-file-excel"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkBlue mb-3">Office Productivity Apps</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Learn professional document editing (Word/Docs), spreadsheet calculations & local budgeting (Excel/Sheets), and impactful presentations.
+                </p>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkBlue mb-3">Practical AI & Smart Tools</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Discover how to use Generative AI safely as a daily personal assistant for research, translation, studies, and local business growth.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses / Target Audience Section -->
+    <section id="courses" class="py-16 bg-white border-y border-slate-200 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Tailored Tracks</span>
+                <h2 class="text-3xl font-extrabold text-darkBlue">Who Can Join Our Academy?</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-lightBg rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-darkBlue text-base mb-2">🎓 School Students</h4>
+                    <p class="text-xs text-slate-600">Computer fundamentals, typing speed, and academic study aids.</p>
+                </div>
+                <div class="p-6 bg-lightBg rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-darkBlue text-base mb-2">💼 Job Seekers</h4>
+                    <p class="text-xs text-slate-600">Professional resume building, email etiquette, and job portals.</p>
+                </div>
+                <div class="p-6 bg-lightBg rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-darkBlue text-base mb-2">👩‍🦰 Women & Homemakers</h4>
+                    <p class="text-xs text-slate-600">Digital banking, UPI safety, and e-Governance access.</p>
+                </div>
+                <div class="p-6 bg-lightBg rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-darkBlue text-base mb-2">🚜 Farmers & Shop Owners</h4>
+                    <p class="text-xs text-slate-600">Crop research tools, digital invoicing, and expense spreadsheets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="py-20 px-4 bg-lightBg">
+        <div class="max-w-xl mx-auto bg-white border p-8 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-bold text-darkBlue mb-2 text-center">Student Admission Application</h3>
+            <p class="text-slate-600 text-xs text-center mb-6">Fill out your details below to reserve your seat in Sathamba.</p>
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Success! Your admission application has been recorded. We will contact you shortly.');">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter full name">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile / WhatsApp Number</label>
+                    <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="10-digit mobile number">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Select Learner Category</label>
+                    <select class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                        <option>School Student (12-18 yrs)</option>
+                        <option>Job Seeker / College Student</option>
+                        <option>Woman / Homemaker</option>
+                        <option>Farmer / Shop Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-accent hover:bg-orange-600 text-white font-bold py-3.5 rounded-lg shadow-md transition">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs border-t border-slate-800">
+        <p>© 2026 Sathamba Digital Saksham Academy. All Rights Reserved.</p>
+        <p class="mt-2 space-x-4">
+            <a href="privacy-policy.html" class="underline hover:text-white">Privacy Policy</a>
+            <a href="terms.html" class="underline hover:text-white">Terms</a>
+            <a href="refund-policy.html" class="underline hover:text-white">Refund Policy</a>
+        </p>
+    </footer>
+</body>
+</html>

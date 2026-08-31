@@ -19,7 +19,7 @@ Our academy bridges the rural digital divide by transitioning students, job seek
 
 ## 🌐 Live Website
 Access our live web portal hosted via GitHub Pages:  
-[https://kumarmehul48.github.io/sathamba-digital-academy/](https://kumarmehul48.github.io/sathamba-digital-academy/)
+[https://kumarmehul48.github.io/sathamba-digital-Saksham-academy/](https://kumarmehul48.github.io/sathamba-digital-Saksham-academy/)
 
 ## 📞 Contact & Admissions
 * **Location:** Sathamba Taluka Hub, Aravalli District, Gujarat

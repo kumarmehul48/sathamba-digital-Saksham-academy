@@ -12,7 +12,7 @@
                     colors: {
                        primary: '#0284c7',    // Sky Blue
                        darkBlue: '#0b2545',   // Navy Blue
-                       accent: '#38bdf8',     // Light Sky Blue (for buttons/highlights)
+                       accent: '#38bdf8',     // Light Sky Blue
                        lightBg: '#f8fafc'     // Off-White/Light Background
                     }
                 }
@@ -21,7 +21,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-lightBg text-slate-800 font-sans antialiased">
+<body class="bg-lightBg text-slate-800 font-sans antialiased relative">
 
     <!-- Top Contact & Identity Bar -->
     <div class="bg-darkBlue text-slate-200 text-xs sm:text-sm py-2 px-4">
@@ -35,7 +35,7 @@
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="SDSAENGLOGO.png" alt="SDSA Logo" class="w-11 h-11 object-contain rounded-xl shadow-md">
@@ -45,9 +45,9 @@
                 <a href="#home" class="hover:text-primary transition">Home</a>
                 <a href="#about" class="hover:text-primary transition">About</a>
                 <a href="#courses" class="hover:text-primary transition">Courses</a>
+                <a href="#projects" class="hover:text-primary transition">Outcomes</a>
                 <a href="#curriculum" class="hover:text-primary transition">26-Week Journey</a>
-                <a href="#workbooks" class="hover:text-primary transition">Workbooks</a>
-                <a href="#gallery" class="hover:text-primary transition">Gallery</a>
+                <a href="#testimonials" class="hover:text-primary transition">Reviews</a>
                 <a href="#contact" class="hover:text-primary transition">Contact</a>
                 <a href="#admission" class="bg-primary text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-darkBlue transition">Apply For Admission</a>
             </div>
@@ -55,9 +55,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="bg-gradient-to-br from-darkBlue to-primary text-white py-24 px-4 text-center">
+    <header id="home" class="bg-gradient-to-br from-darkBlue to-primary text-white py-20 px-4 text-center">
         <div class="max-w-4xl mx-auto space-y-6">
-            <span class="bg-accent/20 text-accent font-semibold px-4 py-1.5 rounded-full text-sm border border-accent/30">
+            <span class="bg-accent/20 text-accent font-semibold px-4 py-1.5 rounded-full text-sm border border-accent/30 inline-block">
                 🚀 Empowering Sathamba Taluka with Next-Gen Skills
             </span>
             <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
@@ -66,8 +66,16 @@
             <p class="text-slate-300 text-lg max-w-2xl mx-auto">
                 Practical, career-focused digital training designed to transform students, youth, and professionals into confident digital leaders right here in Sathamba.
             </p>
+            
+            <!-- Outcome Badges -->
+            <div class="flex flex-wrap justify-center gap-6 pt-2 text-xs sm:text-sm text-slate-200">
+                <div><i class="fa-solid fa-briefcase text-accent mr-1.5"></i> 100% Practical & Project-Based</div>
+                <div><i class="fa-solid fa-certificate text-accent mr-1.5"></i> Industry Recognized Certificate</div>
+                <div><i class="fa-solid fa-laptop-code text-accent mr-1.5"></i> Portfolio Creation</div>
+            </div>
+
             <div class="pt-4 flex flex-wrap justify-center gap-4">
-                <a href="#admission" class="bg-accent hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition">
+                <a href="#admission" class="bg-accent hover:bg-sky-500 text-darkBlue font-bold px-8 py-4 rounded-xl shadow-lg transition">
                     Apply Now
                 </a>
                 <a href="#courses" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-4 rounded-xl transition">
@@ -76,6 +84,13 @@
             </div>
         </div>
     </header>
+
+    <!-- Batch Availability Banner -->
+    <div class="bg-sky-100 border-b border-sky-200 py-3 px-4 text-center">
+        <p class="text-xs sm:text-sm font-bold text-darkBlue">
+            📅 Next Batch Starting Soon | 🕒 Morning & Evening Batches Available | 🎟️ Limited Seats Per Batch
+        </p>
+    </div>
 
     <!-- About SDSA Section -->
     <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
@@ -131,146 +146,167 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
-                    <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-laptop"></i>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
+                            <i class="fa-solid fa-laptop"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-darkBlue">Phase 1: Digital Foundations</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Computer operating systems, file architecture, professional internet navigation, digital banking security, UPI safety, and professional email etiquette.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Phase 1: Digital Foundations</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Computer operating systems, file architecture, professional internet navigation, digital banking security, UPI safety, and professional email etiquette.
-                    </p>
-                </div>
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
-                    <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-chart-line"></i>
+                    <div class="pt-4 border-t border-slate-200 text-xs text-slate-500 font-medium">
+                        <i class="fa-solid fa-user-check text-primary mr-1"></i> Target: Office Assistant, Digital Operator
                     </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Phase 2: Office Productivity</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Master Google Workspace and Microsoft Office, advanced spreadsheet data management, professional document design, and impactful presentations.
-                    </p>
                 </div>
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
-                    <div class="w-12 h-12 bg-accent text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-robot"></i>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-darkBlue">Phase 2: Office Productivity</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Master Google Workspace and Microsoft Office, advanced spreadsheet data management, professional document design, and impactful presentations.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Phase 3: AI & Web Creation</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Generative AI prompt engineering (ChatGPT, Claude, Gemini), automated workflows (n8n), web development basics (HTML/Tailwind), and portfolio building.
-                    </p>
+                    <div class="pt-4 border-t border-slate-200 text-xs text-slate-500 font-medium">
+                        <i class="fa-solid fa-user-check text-primary mr-1"></i> Target: Data Entry & MIS Specialist
+                    </div>
                 </div>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-accent text-darkBlue rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-darkBlue">Phase 3: AI & Web Creation</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Generative AI prompt engineering (ChatGPT, Claude, Gemini), automated workflows (n8n), web development basics (HTML/Tailwind), and portfolio building.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 text-xs text-slate-500 font-medium">
+                        <i class="fa-solid fa-user-check text-primary mr-1"></i> Target: AI Content Creator, Web Developer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Outcomes & Student Projects Section -->
+    <section id="projects" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span class="text-accent font-bold tracking-widest uppercase text-sm">Real-World Skills</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">What You Will Build & Master</h2>
+            <p class="text-slate-600 text-sm">Every learner graduates with hands-on projects ready to demonstrate to employers and clients.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <span class="text-xs font-bold text-primary uppercase">Week 12 Outcome</span>
+                <h4 class="font-bold text-darkBlue text-lg">Automated Excel Dashboard</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Analyze business data, create pivot charts, and generate automated financial and sales reports.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <span class="text-xs font-bold text-primary uppercase">Week 20 Outcome</span>
+                <h4 class="font-bold text-darkBlue text-lg">AI Workflow Engine</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Build custom prompt templates for instant translation, professional emailing, and content creation.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <span class="text-xs font-bold text-primary uppercase">Week 26 Outcome</span>
+                <h4 class="font-bold text-darkBlue text-lg">Live Portfolio Website</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Code, design, and launch your responsive online web portfolio hosted on GitHub Pages.</p>
             </div>
         </div>
     </section>
 
     <!-- 26-Week Curriculum Preview Section -->
-    <section id="curriculum" class="py-20 px-4 max-w-5xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span class="text-accent font-bold tracking-widest uppercase text-sm">Comprehensive Roadmap</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">26-Week Curriculum Preview</h2>
-            <p class="text-slate-600 text-sm">Explore how our structured modules build your expertise week by week.</p>
-        </div>
-
-        <div class="space-y-4">
-            <!-- Accordion Item 1 -->
-            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
-                <button onclick="toggleAccordion('week1')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
-                    <span>Weeks 01–06: Computer Literacy & Operating Fundamentals</span>
-                    <i id="icon-week1" class="fa-solid fa-chevron-down text-accent"></i>
-                </button>
-                <div id="content-week1" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
-                    <p><strong>Objectives:</strong> Gain total confidence in hardware operation, file management, and secure internet connectivity.</p>
-                    <p><strong>Topics Covered:</strong> Windows navigation, file compression, cloud backup, secure browser practices, digital ID safety, and typing mastery.</p>
-                </div>
-            </div>
-
-            <!-- Accordion Item 2 -->
-            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
-                <button onclick="toggleAccordion('week2')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
-                    <span>Weeks 07–14: Advanced Office Productivity & Data Management</span>
-                    <i id="icon-week2" class="fa-solid fa-chevron-down text-accent"></i>
-                </button>
-                <div id="content-week2" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
-                    <p><strong>Objectives:</strong> Build professional administrative and accounting document skills.</p>
-                    <p><strong>Topics Covered:</strong> Advanced Excel/Google Sheets (formulas, VLOOKUP, pivot tables), professional correspondence drafting, and business reporting.</p>
-                </div>
-            </div>
-
-            <!-- Accordion Item 3 -->
-            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
-                <button onclick="toggleAccordion('week3')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
-                    <span>Weeks 15–20: Generative AI & Prompt Engineering Masterclass</span>
-                    <i id="icon-week3" class="fa-solid fa-chevron-down text-accent"></i>
-                </button>
-                <div id="content-week3" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
-                    <p><strong>Objectives:</strong> Leverage state-of-the-art AI assistants for research, writing, and problem-solving.</p>
-                    <p><strong>Topics Covered:</strong> ChatGPT, Claude, and Gemini prompting strategies, automated content summarization, data analysis, and multilingual localization.</p>
-                </div>
-            </div>
-
-            <!-- Accordion Item 4 -->
-            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
-                <button onclick="toggleAccordion('week4')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
-                    <span>Weeks 21–26: Web Development, Automation & Capstone Project</span>
-                    <i id="icon-week4" class="fa-solid fa-chevron-down text-accent"></i>
-                </button>
-                <div id="content-week4" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
-                    <p><strong>Objectives:</strong> Build live web pages, connect workflow automation tools, and launch a professional portfolio.</p>
-                    <p><strong>Topics Covered:</strong> HTML5, Tailwind CSS, GitHub deployment, workflow automation with n8n, and final capstone project presentation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Student Workbooks Preview Section -->
-    <section id="workbooks" class="py-20 bg-white border-y border-slate-200 px-4">
-        <div class="max-w-7xl mx-auto">
+    <section id="curriculum" class="py-20 bg-white border-y border-slate-200 px-4">
+        <div class="max-w-5xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-accent font-bold tracking-widest uppercase text-sm">Interactive Learning System</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Student Workbooks & Practical Execution</h2>
-                <p class="text-slate-600 text-sm">Our platform features weekly workbooks designed for hands-on mastery. Full interactive workbooks are accessible in the Student Portal.</p>
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Comprehensive Roadmap</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">26-Week Curriculum Preview</h2>
+                <p class="text-slate-600 text-sm">Explore how our structured modules build your expertise week by week.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
-                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-book-open"></i> Step-by-Step Lessons</div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Each week provides comprehensive guided lessons with clear explanations and visual examples.</p>
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="bg-lightBg border rounded-xl shadow-sm overflow-hidden">
+                    <button onclick="toggleAccordion('week1')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-100 transition">
+                        <span>Weeks 01–06: Computer Literacy & Operating Fundamentals</span>
+                        <i id="icon-week1" class="fa-solid fa-chevron-down text-accent"></i>
+                    </button>
+                    <div id="content-week1" class="hidden p-5 border-t border-slate-200 text-xs text-slate-600 space-y-2 bg-white">
+                        <p><strong>Objectives:</strong> Gain total confidence in hardware operation, file management, and secure internet connectivity.</p>
+                        <p><strong>Topics Covered:</strong> Windows navigation, file compression, cloud backup, secure browser practices, digital ID safety, and typing mastery.</p>
+                    </div>
                 </div>
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
-                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-laptop-code"></i> Practical Tasks</div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Students execute real-world assignments and submit their work directly through the student portal.</p>
+
+                <!-- Accordion Item 2 -->
+                <div class="bg-lightBg border rounded-xl shadow-sm overflow-hidden">
+                    <button onclick="toggleAccordion('week2')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-100 transition">
+                        <span>Weeks 07–14: Advanced Office Productivity & Data Management</span>
+                        <i id="icon-week2" class="fa-solid fa-chevron-down text-accent"></i>
+                    </button>
+                    <div id="content-week2" class="hidden p-5 border-t border-slate-200 text-xs text-slate-600 space-y-2 bg-white">
+                        <p><strong>Objectives:</strong> Build professional administrative and accounting document skills.</p>
+                        <p><strong>Topics Covered:</strong> Advanced Excel/Google Sheets (formulas, VLOOKUP, pivot tables), professional correspondence drafting, and business reporting.</p>
+                    </div>
                 </div>
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
-                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-award"></i> Feedback & Grading</div>
-                    <p class="text-xs text-slate-600 leading-relaxed">Trainers review submissions, provide actionable feedback, and track skill development.</p>
+
+                <!-- Accordion Item 3 -->
+                <div class="bg-lightBg border rounded-xl shadow-sm overflow-hidden">
+                    <button onclick="toggleAccordion('week3')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-100 transition">
+                        <span>Weeks 15–20: Generative AI & Prompt Engineering Masterclass</span>
+                        <i id="icon-week3" class="fa-solid fa-chevron-down text-accent"></i>
+                    </button>
+                    <div id="content-week3" class="hidden p-5 border-t border-slate-200 text-xs text-slate-600 space-y-2 bg-white">
+                        <p><strong>Objectives:</strong> Leverage state-of-the-art AI assistants for research, writing, and problem-solving.</p>
+                        <p><strong>Topics Covered:</strong> ChatGPT, Claude, and Gemini prompting strategies, automated content summarization, data analysis, and multilingual localization.</p>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="bg-lightBg border rounded-xl shadow-sm overflow-hidden">
+                    <button onclick="toggleAccordion('week4')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-100 transition">
+                        <span>Weeks 21–26: Web Development, Automation & Capstone Project</span>
+                        <i id="icon-week4" class="fa-solid fa-chevron-down text-accent"></i>
+                    </button>
+                    <div id="content-week4" class="hidden p-5 border-t border-slate-200 text-xs text-slate-600 space-y-2 bg-white">
+                        <p><strong>Objectives:</strong> Build live web pages, connect workflow automation tools, and launch a professional portfolio.</p>
+                        <p><strong>Topics Covered:</strong> HTML5, Tailwind CSS, GitHub deployment, workflow automation with n8n, and final capstone project presentation.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-4 max-w-7xl mx-auto">
+    <!-- Student Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 max-w-7xl mx-auto">
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span class="text-accent font-bold tracking-widest uppercase text-sm">Academy Life</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Gallery & Workshops in Sathamba</h2>
+            <span class="text-accent font-bold tracking-widest uppercase text-sm">Learner Stories</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">What Our Students Say</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
-                <div class="text-center p-4">
-                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
-                    <p class="text-sm">Classroom Computer Training Session</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <div class="flex text-amber-400 gap-1 text-xs">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
+                <p class="text-xs text-slate-600 italic">"Learning AI prompt engineering along with regular computer skills opened new career opportunities right from Sathamba."</p>
+                <div class="text-xs font-bold text-darkBlue">— SDSA Graduate Student</div>
             </div>
-            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
-                <div class="text-center p-4">
-                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
-                    <p class="text-sm">AI & Prompt Engineering Workshop</p>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <div class="flex text-amber-400 gap-1 text-xs">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
+                <p class="text-xs text-slate-600 italic">"The workbook system made every lesson easy to understand with hands-on practice every week."</p>
+                <div class="text-xs font-bold text-darkBlue">— Office Productivity Batch Student</div>
             </div>
-            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
-                <div class="text-center p-4">
-                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
-                    <p class="text-sm">Student Portfolio Showcase & Ceremony</p>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-left space-y-3">
+                <div class="flex text-amber-400 gap-1 text-xs">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
+                <p class="text-xs text-slate-600 italic">"I created my own web portfolio during the capstone project and host it on GitHub now!"</p>
+                <div class="text-xs font-bold text-darkBlue">— Web & AI Bootcamp Student</div>
             </div>
         </div>
     </section>
@@ -280,7 +316,7 @@
         <div class="max-w-xl mx-auto bg-lightBg border p-8 sm:p-10 rounded-2xl shadow-lg">
             <div class="text-center mb-8 space-y-2">
                 <h3 class="text-2xl font-bold text-darkBlue">Online Admission Application</h3>
-                <p class="text-slate-600 text-xs">Fill out your details below to apply for the upcoming batch. Submissions are instantly routed to our admissions team.</p>
+                <p class="text-slate-600 text-xs">Fill out your details below to apply for the upcoming batch. Submissions are instantly routed to our admissions team via WhatsApp.</p>
             </div>
             
             <form id="admissionForm" onsubmit="submitAdmission(event)" class="space-y-4">
@@ -334,7 +370,7 @@
                 </button>
             </form>
             <div id="successMessage" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-lg text-xs text-center font-semibold">
-                Application successfully prepared! Redirecting to WhatsApp to send to SDSA admissions (+91 70437 95279)...
+                Application prepared! Opening WhatsApp to send to SDSA admissions (+91 70437 95279)...
             </div>
         </div>
     </section>
@@ -392,14 +428,22 @@
         </div>
     </section>
 
+    <!-- Floating WhatsApp CTA Button -->
+    <a href="https://wa.me/917043795279?text=Hi%2C%20I%20have%20a%20query%20about%20SDSA%20admissions." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl transition z-50 flex items-center gap-2">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="hidden sm:inline font-bold text-sm">Chat with Us</span>
+    </a>
+
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-center text-xs border-t border-slate-800">
         <div class="max-w-7xl mx-auto space-y-4">
             <p>© 2026 Sathamba Digital Saksham Academy (SDSA). All Rights Reserved.</p>
             <p class="space-x-4">
-                <a href="#" class="underline hover:text-white">Privacy Policy</a>
-                <a href="#" class="underline hover:text-white">Terms of Service</a>
-                <a href="#" class="underline hover:text-white">Refund Policy</a>
+                <a href="privacy-policy.html" class="underline hover:text-white">Privacy Policy</a>
+                <a href="terms.html" class="underline hover:text-white">Terms of Service</a>
+                <a href="refund-policy.html" class="underline hover:text-white">Refund Policy</a>
             </p>
         </div>
     </footer>

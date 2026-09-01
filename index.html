@@ -39,7 +39,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="SDSAENGLOGO.png" alt="SDSA Logo" class="w-11 h-11 object-contain rounded-xl shadow-md">
-                    <span class="block text-xs font-semibold text-darkBlue uppercase tracking-widest">                </div>
+                <span class="block text-xs font-semibold text-darkBlue uppercase tracking-widest">
             </div>
             <div class="hidden lg:flex items-center gap-6 font-medium text-slate-600 text-sm">
                 <a href="#home" class="hover:text-primary transition">Home</a>
@@ -49,7 +49,8 @@
                 <a href="#workbooks" class="hover:text-primary transition">Workbooks</a>
                 <a href="#gallery" class="hover:text-primary transition">Gallery</a>
                 <a href="#contact" class="hover:text-primary transition">Contact</a>
-                <a href="#admission" class="bg-primary text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-darkBlue transition">Apply For Admission</a>            </div>
+                <a href="#admission" class="bg-primary text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-darkBlue transition">Apply For Admission</a>
+            </div>
         </div>
     </nav>
 
@@ -282,29 +283,29 @@
                 <p class="text-slate-600 text-xs">Fill out your details below to apply for the upcoming batch. Submissions are instantly routed to our admissions team.</p>
             </div>
             
-            <form id="admissionForm" class="space-y-4" onsubmit="submitAdmission(event)">
+            <form id="admissionForm" action="https://formspree.io/f/xgaekwnj" method="POST" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
-                    <input type="text" id="fullName" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full name">
+                    <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full name">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number</label>
-                        <input type="tel" id="mobileNumber" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="10-digit number">
+                        <input type="tel" id="mobileNumber" name="mobileNumber" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="10-digit number">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
-                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="email@example.com">
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="email@example.com">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Date of Birth</label>
-                        <input type="date" id="dob" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                        <input type="date" id="dob" name="dob" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Education Level</label>
-                        <select id="education" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                        <select id="education" name="education" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
                             <option>High School / 12th</option>
                             <option>Graduate / College</option>
                             <option>Post Graduate</option>
@@ -314,27 +315,24 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Parent / Guardian Name</label>
-                    <input type="text" id="guardian" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Guardian name">
+                    <input type="text" id="guardian" name="guardian" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Guardian name">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Address in Sathamba / District</label>
-                    <textarea id="address" rows="2" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full address"></textarea>
+                    <textarea id="address" name="address" rows="2" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full address"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Selected Course</label>
-                    <select id="course" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                    <select id="course" name="course" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
                         <option>26-Week Digital Skills & AI Master Program</option>
                         <option>Computer Fundamentals & Office Productivity</option>
                         <option>Generative AI & Web Development Bootcamp</option>
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Submit Application via WhatsApp
+                    Submit Application
                 </button>
             </form>
-            <div id="successMessage" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-lg text-xs text-center font-semibold">
-                Application successfully prepared! Redirecting to WhatsApp to send to SDSA admissions (+91 70437 95279)...
-            </div>
         </div>
     </section>
 
@@ -370,18 +368,18 @@
             </div>
             <div class="bg-white border p-8 rounded-2xl shadow-sm space-y-4">
                 <h3 class="text-xl font-bold text-darkBlue">Send Us a Message</h3>
-                <form onsubmit="submitContact(event)" class="space-y-4">
+                <form action="https://formspree.io/f/xgaekwnj" method="POST" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Name</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Name">
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Name">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email / Phone</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Contact info">
+                        <input type="text" name="contact" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Contact info">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Message</label>
-                        <textarea rows="3" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="How can we help you?"></textarea>
+                        <textarea name="message" rows="3" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="How can we help you?"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-primary hover:bg-darkBlue text-white font-bold py-3 rounded-lg transition">
                         Send Message
@@ -410,29 +408,6 @@
             const icon = document.getElementById('icon-' + weekId);
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
-        }
-
-        function submitAdmission(event) {
-            event.preventDefault();
-            const name = document.getElementById('fullName').value;
-            const mobile = document.getElementById('mobileNumber').value;
-            const email = document.getElementById('email').value;
-            const course = document.getElementById('course').value;
-            
-            const msgBox = document.getElementById('successMessage');
-            msgBox.classList.remove('hidden');
-
-            const whatsappNumber = "917043795279";
-            const text = `New SDSA Admission Application:%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Email:* ${encodeURIComponent(email)}%0A*Course:* ${encodeURIComponent(course)}`;
-            
-            setTimeout(() => {
-                window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-            }, 1000);
-        }
-
-        function submitContact(event) {
-            event.preventDefault();
-            alert("Thank you! Your message has been sent to SDSA administration.");
         }
     </script>
 </body>

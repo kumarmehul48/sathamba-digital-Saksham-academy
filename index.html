@@ -283,7 +283,7 @@
                 <p class="text-slate-600 text-xs">Fill out your details below to apply for the upcoming batch. Submissions are instantly routed to our admissions team.</p>
             </div>
             
-            <form id="admissionForm" action="https://formspree.io/f/xgaekwnj" method="POST" class="space-y-4">
+            <form id="admissionForm" onsubmit="submitAdmission(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
                     <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full name">
@@ -330,9 +330,12 @@
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                    Submit Application
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Submit Application via WhatsApp
                 </button>
             </form>
+            <div id="successMessage" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-lg text-xs text-center font-semibold">
+                Application successfully prepared! Redirecting to WhatsApp to send to SDSA admissions (+91 70437 95279)...
+            </div>
         </div>
     </section>
 
@@ -408,6 +411,29 @@
             const icon = document.getElementById('icon-' + weekId);
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
+        }
+
+        function submitAdmission(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('fullName').value;
+            const mobile = document.getElementById('mobileNumber').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const education = document.getElementById('education').value;
+            const guardian = document.getElementById('guardian').value;
+            const address = document.getElementById('address').value;
+            const course = document.getElementById('course').value;
+
+            const msgBox = document.getElementById('successMessage');
+            msgBox.classList.remove('hidden');
+
+            const whatsappNumber = "917043795279";
+            const text = `New SDSA Admission Application:%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Email:* ${encodeURIComponent(email)}%0A*DOB:* ${encodeURIComponent(dob)}%0A*Education:* ${encodeURIComponent(education)}%0A*Guardian:* ${encodeURIComponent(guardian)}%0A*Address:* ${encodeURIComponent(address)}%0A*Course:* ${encodeURIComponent(course)}`;
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+            }, 1000);
         }
     </script>
 </body>

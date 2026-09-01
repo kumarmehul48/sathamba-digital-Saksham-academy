@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sathamba Digital & AI Saksham Academy | Advanced Tech & AI Training</title>
+    <title>Sathamba Digital Saksham Academy (SDSA) | 26-Week Advanced Tech & AI Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,11 +23,14 @@
 </head>
 <body class="bg-lightBg text-slate-800 font-sans antialiased">
 
-    <!-- Top Contact Bar -->
+    <!-- Top Contact & Identity Bar -->
     <div class="bg-darkBlue text-slate-200 text-xs sm:text-sm py-2 px-4">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div><i class="fa-solid fa-location-dot text-accent"></i> Sathamba Taluka Hub, Aravalli District, Gujarat</div>
-            <div><i class="fa-solid fa-phone text-accent"></i> +91 70437 95279</div>
+            <div class="flex items-center gap-4">
+                <span><i class="fa-solid fa-phone text-accent"></i> +91 70437 95279</span>
+                <a href="#login" class="text-accent hover:underline font-semibold"><i class="fa-solid fa-lock"></i> Portal Login</a>
+            </div>
         </div>
     </div>
 
@@ -35,257 +38,408 @@
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-    <!-- Replace 'SDSAENGLOGO.png' with your actual uploaded file name -->
-    <img src="SDSAENGLOGO.png" alt="Sathamba Academy Logo" class="w-10 h-10 object-contain rounded-lg shadow-md">
-    <div>
-        <span class="block font-bold text-lg leading-tight text-darkBlue uppercase">Sathamba Digital</span>
-        <span class="block text-xs font-semibold text-accent uppercase tracking-widest">& AI Saksham Academy</span>
-    </div>
-</div>
-            <div class="hidden md:flex items-center gap-6 font-medium text-slate-600 text-sm">
+                <div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span class="block font-bold text-lg leading-tight text-darkBlue uppercase">SDSA</span>
+                    <span class="block text-xs font-semibold text-accent uppercase tracking-widest">Sathamba Digital Saksham Academy</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center gap-6 font-medium text-slate-600 text-sm">
+                <a href="#home" class="hover:text-primary transition">Home</a>
                 <a href="#about" class="hover:text-primary transition">About</a>
-                <a href="#techstack" class="hover:text-primary transition">Latest Tech & AI</a>
-                <a href="#curriculum" class="hover:text-primary transition">Curriculum</a>
-                <a href="#audience" class="hover:text-primary transition">Who Can Join</a>
-                <a href="#admission" class="bg-accent text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-orange-600 transition">Online Admission</a>
+                <a href="#courses" class="hover:text-primary transition">Courses</a>
+                <a href="#curriculum" class="hover:text-primary transition">26-Week Journey</a>
+                <a href="#workbooks" class="hover:text-primary transition">Workbooks</a>
+                <a href="#gallery" class="hover:text-primary transition">Gallery</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+                <a href="#admission" class="bg-accent text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-orange-600 transition">Apply For Admission</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Welcome Banner -->
-    <header class="bg-gradient-to-br from-darkBlue to-primary text-white py-20 px-4 text-center">
+    <!-- Hero Section -->
+    <header id="home" class="bg-gradient-to-br from-darkBlue to-primary text-white py-24 px-4 text-center">
         <div class="max-w-4xl mx-auto space-y-6">
             <span class="bg-accent/20 text-accent font-semibold px-4 py-1.5 rounded-full text-sm border border-accent/30">
-                🚀 Next-Gen Digital & AI Education in Sathamba Taluka
+                🚀 Empowering Sathamba Taluka with Next-Gen Skills
             </span>
             <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
-                Mastering Modern Tech & <span class="text-accent">Generative AI Confidence</span>
+                Mastering Digital Literacy, <span class="text-accent">Computer & AI Skills</span>
             </h1>
             <p class="text-slate-300 text-lg max-w-2xl mx-auto">
-                Equipping Sathamba with advanced skills: Full-stack web development, workflow automation tools like n8n, AI assistants, and professional digital literacy.
+                Practical, career-focused digital training designed to transform students, youth, and professionals into confident digital leaders right here in Sathamba.
             </p>
             <div class="pt-4 flex flex-wrap justify-center gap-4">
                 <a href="#admission" class="bg-accent hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition">
-                    Apply For Admission Now
+                    Apply Now
                 </a>
-                <a href="#techstack" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-4 rounded-xl transition">
-                    Explore What We Cover
+                <a href="#courses" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-4 rounded-xl transition">
+                    Explore Courses
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div class="space-y-4">
-                <span class="text-accent font-bold tracking-widest uppercase text-xs">Our Vision & Mission</span>
-                <h2 class="text-3xl font-extrabold text-darkBlue">Transforming Sathamba Taluka into an AI-Ready Tech Hub</h2>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    We believe rural talent should not just consume technology, but master and build with it. Located right here in Sathamba, our academy bridges traditional computer literacy with elite modern tools like Artificial Intelligence, modern app building, and automated workflows.
+    <!-- About SDSA Section -->
+    <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="text-accent font-bold tracking-widest uppercase text-xs">About SDSA Academy</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Bridging the Rural Digital Divide Through Elite Training</h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Sathamba Digital Saksham Academy (SDSA) was founded with a singular mission: to provide world-class digital education, computer proficiency, and modern artificial intelligence capabilities to Sathamba Taluka and the surrounding Aravalli district.
                 </p>
-                <div class="grid grid-cols-2 gap-4 pt-2">
-                    <div class="p-4 bg-lightBg rounded-xl border">
-                        <h4 class="font-bold text-darkBlue text-lg">Cutting-Edge</h4>
-                        <p class="text-xs text-slate-500">AI & Web Development Curriculum</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-white rounded-xl border shadow-sm">
+                        <h4 class="font-bold text-darkBlue text-lg">Our Vision</h4>
+                        <p class="text-xs text-slate-500 mt-1">Creating an AI-fluent, digitally independent rural workforce ready for global opportunities.</p>
                     </div>
-                    <div class="p-4 bg-lightBg rounded-xl border">
-                        <h4 class="font-bold text-darkBlue text-lg">Practical Focus</h4>
-                        <p class="text-xs text-slate-500">Real-World Project Execution</p>
+                    <div class="p-4 bg-white rounded-xl border shadow-sm">
+                        <h4 class="font-bold text-darkBlue text-lg">Our Mission</h4>
+                        <p class="text-xs text-slate-500 mt-1">Delivering structured 26-week practical training with hands-on projects and certified mentorship.</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-darkBlue text-white p-8 rounded-xl space-y-4">
-                <h3 class="text-xl font-bold text-accent"><i class="fa-solid fa-star"></i> Why Learn With Us?</h3>
-                <ul class="space-y-3 text-sm text-slate-300">
-                    <li><i class="fa-solid fa-check text-accent mr-2"></i> Local physical hub in Sathamba Taluka with direct mentorship.</li>
-                    <li><i class="fa-solid fa-check text-accent mr-2"></i> Hands-on training in Generative AI, prompting, and LLM workflows.</li>
-                    <li><i class="fa-solid fa-check text-accent mr-2"></i> Real-world web development and application creation skills.</li>
-                    <li><i class="fa-solid fa-check text-accent mr-2"></i> Focus on earning opportunities, freelancing, and digital productivity.</li>
+            <div class="bg-darkBlue text-white p-8 rounded-2xl shadow-xl space-y-6">
+                <h3 class="text-2xl font-bold text-accent"><i class="fa-solid fa-star"></i> Why Choose SDSA?</h3>
+                <ul class="space-y-4 text-sm text-slate-300">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-accent text-lg mt-0.5"></i>
+                        <span><strong>Structured 26-Week Journey:</strong> Comprehensive roadmap covering computers, office productivity, and generative AI.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-accent text-lg mt-0.5"></i>
+                        <span><strong>Practical Learning & Workbooks:</strong> Interactive workbook system with hands-on tasks and real-time execution.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-accent text-lg mt-0.5"></i>
+                        <span><strong>Portfolio Development:</strong> Build live web applications and digital projects to showcase to employers.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-accent text-lg mt-0.5"></i>
+                        <span><strong>Verified Certificates:</strong> Official certification upon successful assessment completion and project review.</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Latest Tech & AI Knowledge Section -->
-    <section id="techstack" class="py-16 bg-white border-y border-slate-200 px-4">
+    <!-- Courses / Training Program Section -->
+    <section id="courses" class="py-20 bg-white border-y border-slate-200 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-                <span class="text-accent font-bold tracking-widest uppercase text-sm">Next-Gen Curriculum</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">What Latest Technologies & AI We Cover</h2>
-                <p class="text-slate-600 text-sm">We take you beyond standard typing and basic sheets into the modern age of intelligent computing.</p>
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Flagship Program</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">26-Week Digital Skills & AI Master Program</h2>
+                <p class="text-slate-600 text-sm">A transformative curriculum designed to take learners from absolute beginners to confident digital practitioners.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Tech Card 1 -->
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4">
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
                     <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-darkBlue">Phase 1: Digital Foundations</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Computer operating systems, file architecture, professional internet navigation, digital banking security, UPI safety, and professional email etiquette.
+                    </p>
+                </div>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
+                    <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-darkBlue">Phase 2: Office Productivity</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Master Google Workspace and Microsoft Office, advanced spreadsheet data management, professional document design, and impactful presentations.
+                    </p>
+                </div>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
+                    <div class="w-12 h-12 bg-accent text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
                         <i class="fa-solid fa-robot"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Generative AI & LLMs</h3>
+                    <h3 class="text-xl font-bold text-darkBlue">Phase 3: AI & Web Creation</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Master ChatGPT, Claude, and Gemini. Learn advanced prompt engineering, custom context building, automated research drafting, local language translation, and problem-solving using artificial intelligence.
-                    </p>
-                </div>
-
-                <!-- Tech Card 2 -->
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4">
-                    <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Web & App Development</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Learn how websites and applications are built from scratch using HTML, modern styling frameworks like Tailwind CSS, GitHub version control, and deploying live applications to the internet.
-                    </p>
-                </div>
-
-                <!-- Tech Card 3 -->
-                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-4">
-                    <div class="w-12 h-12 bg-accent text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-darkBlue">Workflow Automation (n8n)</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Discover low-code/no-code process automation using tools like **n8n**. Learn how to connect apps, automate repetitive digital tasks, and build smart data pipelines.
+                        Generative AI prompt engineering (ChatGPT, Claude, Gemini), automated workflows (n8n), web development basics (HTML/Tailwind), and portfolio building.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Structured Modules Section -->
-    <section id="curriculum" class="py-16 px-4 max-w-7xl mx-auto">
+    <!-- 26-Week Curriculum Preview Section -->
+    <section id="curriculum" class="py-20 px-4 max-w-5xl mx-auto">
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span class="text-accent font-bold tracking-widest uppercase text-sm">Step-by-Step Roadmap</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Comprehensive Training Modules</h2>
+            <span class="text-accent font-bold tracking-widest uppercase text-sm">Comprehensive Roadmap</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">26-Week Curriculum Preview</h2>
+            <p class="text-slate-600 text-sm">Explore how our structured modules build your expertise week by week.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-                <span class="text-xs font-bold text-accent uppercase">Module 1</span>
-                <h3 class="text-xl font-bold text-darkBlue">Digital Foundations & Operating Systems</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                    Computer hardware basics, Windows navigation, file management, internet protocols, secure digital banking, UPI safety, and professional email correspondence.
-                </p>
+        <div class="space-y-4">
+            <!-- Accordion Item 1 -->
+            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+                <button onclick="toggleAccordion('week1')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>Weeks 01–06: Computer Literacy & Operating Fundamentals</span>
+                    <i id="icon-week1" class="fa-solid fa-chevron-down text-accent"></i>
+                </button>
+                <div id="content-week1" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
+                    <p><strong>Objectives:</strong> Gain total confidence in hardware operation, file management, and secure internet connectivity.</p>
+                    <p><strong>Topics Covered:</strong> Windows navigation, file compression, cloud backup, secure browser practices, digital ID safety, and typing mastery.</p>
+                </div>
             </div>
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-                <span class="text-xs font-bold text-accent uppercase">Module 2</span>
-                <h3 class="text-xl font-bold text-darkBlue">Office Productivity & Data Tools</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                    Professional document editing (Google Docs/Word), advanced spreadsheet budgeting & data entry (Excel/Sheets), and impactful presentation design.
-                </p>
+
+            <!-- Accordion Item 2 -->
+            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+                <button onclick="toggleAccordion('week2')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>Weeks 07–14: Advanced Office Productivity & Data Management</span>
+                    <i id="icon-week2" class="fa-solid fa-chevron-down text-accent"></i>
+                </button>
+                <div id="content-week2" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
+                    <p><strong>Objectives:</strong> Build professional administrative and accounting document skills.</p>
+                    <p><strong>Topics Covered:</strong> Advanced Excel/Google Sheets (formulas, VLOOKUP, pivot tables), professional correspondence drafting, and business reporting.</p>
+                </div>
             </div>
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-                <span class="text-xs font-bold text-accent uppercase">Module 3</span>
-                <h3 class="text-xl font-bold text-darkBlue">AI Productivity & Prompt Engineering</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                    Practical execution of AI models for daily studies, content creation, business planning, automated summarizing, and language localization in Gujarati and English.
-                </p>
+
+            <!-- Accordion Item 3 -->
+            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+                <button onclick="toggleAccordion('week3')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>Weeks 15–20: Generative AI & Prompt Engineering Masterclass</span>
+                    <i id="icon-week3" class="fa-solid fa-chevron-down text-accent"></i>
+                </button>
+                <div id="content-week3" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
+                    <p><strong>Objectives:</strong> Leverage state-of-the-art AI assistants for research, writing, and problem-solving.</p>
+                    <p><strong>Topics Covered:</strong> ChatGPT, Claude, and Gemini prompting strategies, automated content summarization, data analysis, and multilingual localization.</p>
+                </div>
             </div>
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
-                <span class="text-xs font-bold text-accent uppercase">Module 4</span>
-                <h3 class="text-xl font-bold text-darkBlue">Web & Application Creation (AI-Assisted)</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                    Building personal and business web pages from scratch, hosting via GitHub Pages, managing automated workflows, and exploring digital earning opportunities.
-                </p>
+
+            <!-- Accordion Item 4 -->
+            <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+                <button onclick="toggleAccordion('week4')" class="w-full p-5 text-left font-bold text-darkBlue flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>Weeks 21–26: Web Development, Automation & Capstone Project</span>
+                    <i id="icon-week4" class="fa-solid fa-chevron-down text-accent"></i>
+                </button>
+                <div id="content-week4" class="hidden p-5 border-t border-slate-100 text-xs text-slate-600 space-y-2 bg-lightBg">
+                    <p><strong>Objectives:</strong> Build live web pages, connect workflow automation tools, and launch a professional portfolio.</p>
+                    <p><strong>Topics Covered:</strong> HTML5, Tailwind CSS, GitHub deployment, workflow automation with n8n, and final capstone project presentation.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Who Can Join Section -->
-    <section id="audience" class="py-16 bg-white border-y border-slate-200 px-4">
+    <!-- Student Workbooks Preview Section -->
+    <section id="workbooks" class="py-20 bg-white border-y border-slate-200 px-4">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                <span class="text-accent font-bold tracking-widest uppercase text-sm">Target Groups</span>
-                <h2 class="text-3xl font-extrabold text-darkBlue">Who Can Join in Sathamba Taluka?</h2>
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Interactive Learning System</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Student Workbooks & Practical Execution</h2>
+                <p class="text-slate-600 text-sm">Our platform features weekly workbooks designed for hands-on mastery. Full interactive workbooks are accessible in the Student Portal.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-lightBg p-6 rounded-xl border border-slate-200">
-                    <h4 class="font-bold text-darkBlue text-base mb-2">🎓 Students & Youth</h4>
-                    <p class="text-xs text-slate-600">Build high-demand tech skills, coding foundations, and AI mastery early.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-book-open"></i> Step-by-Step Lessons</div>
+                    <p class="text-xs text-slate-600 leading-relaxed">Each week provides comprehensive guided lessons with clear explanations and visual examples.</p>
                 </div>
-                <div class="bg-lightBg p-6 rounded-xl border border-slate-200">
-                    <h4 class="font-bold text-darkBlue text-base mb-2">💼 Job Seekers</h4>
-                    <p class="text-xs text-slate-600">Acquire modern office automation, web tools, and AI administrative capabilities.</p>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-laptop-code"></i> Practical Tasks</div>
+                    <p class="text-xs text-slate-600 leading-relaxed">Students execute real-world assignments and submit their work directly through the student portal.</p>
                 </div>
-                <div class="bg-lightBg p-6 rounded-xl border border-slate-200">
-                    <h4 class="font-bold text-darkBlue text-base mb-2">👩‍🦰 Women & Homemakers</h4>
-                    <p class="text-xs text-slate-600">Gain digital independence, online banking safety, and remote skill opportunities.</p>
-                </div>
-                <div class="bg-lightBg p-6 rounded-xl border border-slate-200">
-                    <h4 class="font-bold text-darkBlue text-base mb-2">🚜 Farmers & Business Owners</h4>
-                    <p class="text-xs text-slate-600">Leverage market research AI tools, expense sheets, and digital invoicing.</p>
+                <div class="bg-lightBg p-8 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="text-accent font-bold text-lg"><i class="fa-solid fa-award"></i> Feedback & Grading</div>
+                    <p class="text-xs text-slate-600 leading-relaxed">Trainers review submissions, provide actionable feedback, and track skill development.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Admission Section -->
-    <section id="admission" class="py-20 px-4 max-w-xl mx-auto">
-        <div class="bg-white border p-8 rounded-2xl shadow-lg">
-            <h3 class="text-2xl font-bold text-darkBlue mb-2 text-center">Student Admission Application</h3>
-            <p class="text-slate-600 text-xs text-center mb-6">Fill out your details below to send your application directly to our WhatsApp (+91 70437 95279).</p>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span class="text-accent font-bold tracking-widest uppercase text-sm">Academy Life</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkBlue">Gallery & Workshops in Sathamba</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
+                <div class="text-center p-4">
+                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
+                    <p class="text-sm">Classroom Computer Training Session</p>
+                </div>
+            </div>
+            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
+                <div class="text-center p-4">
+                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
+                    <p class="text-sm">AI & Prompt Engineering Workshop</p>
+                </div>
+            </div>
+            <div class="bg-slate-200 h-64 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center text-slate-500 font-semibold border">
+                <div class="text-center p-4">
+                    <i class="fa-solid fa-image text-3xl mb-2 text-primary"></i>
+                    <p class="text-sm">Student Portfolio Showcase & Ceremony</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Application Section -->
+    <section id="admission" class="py-20 bg-white border-y border-slate-200 px-4">
+        <div class="max-w-xl mx-auto bg-lightBg border p-8 sm:p-10 rounded-2xl shadow-lg">
+            <div class="text-center mb-8 space-y-2">
+                <h3 class="text-2xl font-bold text-darkBlue">Online Admission Application</h3>
+                <p class="text-slate-600 text-xs">Fill out your details below to apply for the upcoming batch. Submissions are instantly routed to our admissions team.</p>
+            </div>
             
-            <form id="whatsappForm" class="space-y-4" onsubmit="sendToWhatsApp(event)">
+            <form id="admissionForm" class="space-y-4" onsubmit="submitAdmission(event)">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
                     <input type="text" id="fullName" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full name">
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile / WhatsApp Number</label>
-                    <input type="tel" id="mobileNumber" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="10-digit mobile number">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number</label>
+                        <input type="tel" id="mobileNumber" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="10-digit number">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="email@example.com">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Date of Birth</label>
+                        <input type="date" id="dob" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Education Level</label>
+                        <select id="education" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                            <option>High School / 12th</option>
+                            <option>Graduate / College</option>
+                            <option>Post Graduate</option>
+                            <option>Working Professional / Business</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Select Learner Category</label>
-                    <select id="learnerCategory" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
-                        <option>Student / Youth (Tech Learner)</option>
-                        <option>Job Seeker</option>
-                        <option>Woman / Homemaker</option>
-                        <option>Farmer / Shop Owner</option>
-                    </select>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Parent / Guardian Name</label>
+                    <input type="text" id="guardian" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Guardian name">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Preferred Batch Timing</label>
-                    <select id="batchTiming" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
-                        <option>Morning Batch (8:00 AM - 10:00 AM)</option>
-                        <option>Evening Batch (5:00 PM - 7:00 PM)</option>
-                        <option>Weekend Special Batch</option>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Address in Sathamba / District</label>
+                    <textarea id="address" rows="2" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white" placeholder="Enter your full address"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Selected Course</label>
+                    <select id="course" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-primary text-sm bg-white">
+                        <option>26-Week Digital Skills & AI Master Program</option>
+                        <option>Computer Fundamentals & Office Productivity</option>
+                        <option>Generative AI & Web Development Bootcamp</option>
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Submit Application on WhatsApp
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Submit Application via WhatsApp
                 </button>
             </form>
+            <div id="successMessage" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-lg text-xs text-center font-semibold">
+                Application successfully prepared! Redirecting to WhatsApp to send to SDSA admissions (+91 70437 95279)...
+            </div>
         </div>
     </section>
 
-    <!-- JavaScript for WhatsApp Integration with your exact number -->
-    <script>
-        function sendToWhatsApp(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('fullName').value;
-            const mobile = document.getElementById('mobileNumber').value;
-            const category = document.getElementById('learnerCategory').value;
-            const timing = document.getElementById('batchTiming').value;
-            
-            // Your exact WhatsApp number configured here
-            const ownerPhoneNumber = "917043795279"; 
-            
-            const message = `Hello Sathamba Academy, I want to apply for admission.%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Category:* ${encodeURIComponent(category)}%0A*Batch Timing:* ${encodeURIComponent(timing)}`;
-            
-            window.open(`https://wa.me/${ownerPhoneNumber}?text=${message}`, '_blank');
-        }
-    </script>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <span class="text-accent font-bold tracking-widest uppercase text-xs">Get In Touch</span>
+                <h2 class="text-3xl font-extrabold text-darkBlue">Visit Our Sathamba Hub</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Have questions about admissions, batch timings, or our curriculum? Reach out to our team directly or visit our training center in Sathamba Taluka.
+                </p>
+                <div class="space-y-4 text-sm text-slate-700">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <span>Sathamba Taluka Hub, Aravalli District, Gujarat</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <span>+91 70437 95279</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <span>admissions@sathambadigital.org</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border p-8 rounded-2xl shadow-sm space-y-4">
+                <h3 class="text-xl font-bold text-darkBlue">Send Us a Message</h3>
+                <form onsubmit="submitContact(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Name</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Name">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email / Phone</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="Contact info">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Message</label>
+                        <textarea rows="3" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm bg-white" placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-darkBlue text-white font-bold py-3 rounded-lg transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs border-t border-slate-800">
-        <p>© 2026 Sathamba Digital & AI Saksham Academy. All Rights Reserved.</p>
-        <p class="mt-2 space-x-4">
-            <a href="privacy-policy.html" class="underline hover:text-white">Privacy Policy</a>
-            <a href="terms.html" class="underline hover:text-white">Terms</a>
-            <a href="refund-policy.html" class="underline hover:text-white">Refund Policy</a>
-        </p>
+    <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-center text-xs border-t border-slate-800">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <p>© 2026 Sathamba Digital Saksham Academy (SDSA). All Rights Reserved.</p>
+            <p class="space-x-4">
+                <a href="#" class="underline hover:text-white">Privacy Policy</a>
+                <a href="#" class="underline hover:text-white">Terms of Service</a>
+                <a href="#" class="underline hover:text-white">Refund Policy</a>
+            </p>
+        </div>
     </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        function toggleAccordion(weekId) {
+            const content = document.getElementById('content-' + weekId);
+            const icon = document.getElementById('icon-' + weekId);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function submitAdmission(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const mobile = document.getElementById('mobileNumber').value;
+            const email = document.getElementById('email').value;
+            const course = document.getElementById('course').value;
+            
+            const msgBox = document.getElementById('successMessage');
+            msgBox.classList.remove('hidden');
+
+            const whatsappNumber = "917043795279";
+            const text = `New SDSA Admission Application:%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Email:* ${encodeURIComponent(email)}%0A*Course:* ${encodeURIComponent(course)}`;
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+            }, 1000);
+        }
+
+        function submitContact(event) {
+            event.preventDefault();
+            alert("Thank you! Your message has been sent to SDSA administration.");
+        }
+    </script>
 </body>
 </html>

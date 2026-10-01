@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container-sdsa { @apply max-w-6xl mx-auto px-4 sm:px-6; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-light transition disabled:opacity-50; }
+  .btn-accent { @apply inline-flex items-center justify-center gap-2 bg-accent-dark text-primary-dark font-bold px-6 py-3 rounded-lg hover:bg-accent transition; }
+  .btn-outline { @apply inline-flex items-center justify-center gap-2 border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition; }
+  .card-sdsa { @apply bg-white border border-gray-200 rounded-xl shadow-sm; }
+  .input-sdsa { @apply w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary bg-white; }
+  .label-sdsa { @apply block text-sm font-semibold text-primary mb-1; }
+  .section-pad { @apply py-14 sm:py-20; }
+  .h-section { @apply text-2xl sm:text-3xl font-extrabold text-primary mb-2; }
+}

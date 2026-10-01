@@ -12,8 +12,13 @@ export default function About() {
       <div className="container-sdsa section-pad space-y-12">
         {/* MANAGING TRUST DEDICATED SECTION */}
         <div className="card-sdsa p-8 bg-primary-50 border-l-8 border-l-accent-dark">
-          <Badge tone="accent">Managing Trust</Badge>
-          <h2 className="text-2xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>
+          <div className="flex items-center gap-4">
+            <img src="sdsa-trust-logo.webp" alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent" />
+            <div>
+              <Badge tone="accent">Managing Trust</Badge>
+              <h2 className="text-2xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>
+            </div>
+          </div>
           <p className="text-accent-dark font-extrabold text-base mb-4">Nurturing Wisdom, Sustaining Lives</p>
           <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-4">
             Sathamba Digital Saksham Academy (SDSA) is managed and operated by <b>Shivansh Digital Sagacity & Alleviation</b>. The trust is committed to fostering digital empowerment, facilitating accessible computer education, and driving community progress in Sathamba and the broader Aravalli district.

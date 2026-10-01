@@ -1,6 +1,13 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import supabase, { isBackendConfigured } from './supabaseClient';
 import type { Profile, Role } from '../types/database';
+import { API_BASE } from '../config';
+
+interface StoredSession {
+  role: Role;
+  name: string;
+  batch?: string;
+  status?: string;
+}
 
 interface AuthCtx {
   profile: Profile | null;
@@ -9,91 +16,75 @@ interface AuthCtx {
   isTrainer: boolean;
   isStaff: boolean;
   studentRecordId: string | null;
-  signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+  signIn: (identifier: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
-  resetPassword: (email: string) => Promise<{ error: string | null }>;
+  resetPassword: (identifier: string) => Promise<{ error: string | null }>;
+  session: StoredSession | null;
 }
 
 const Ctx = createContext<AuthCtx>({} as AuthCtx);
 export const useAuth = () => useContext(Ctx);
 
 const STAFF: Role[] = ['admin', 'super_admin'];
+const KEY = 'sdsa_session';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [studentRecordId, setStudentRecordId] = useState<string | null>(null);
+  const [session, setSession] = useState<StoredSession | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isBackendConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) loadProfile(); else setLoading(false);
-    }).catch(() => {
-      setLoading(false);
-    });
-
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) loadProfile(); else { setProfile(null); setStudentRecordId(null); }
-    });
-
-    return () => sub.subscription.unsubscribe();
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) setSession(JSON.parse(raw) as StoredSession);
+    } catch { /* ignore corrupt storage */ }
+    setLoading(false);
   }, []);
 
-  async function loadProfile() {
-    setLoading(true);
+  const profile: Profile | null = session
+    ? ({ id: 'sheet', full_name: session.name, role: session.role } as Profile)
+    : null;
+
+  async function signIn(identifier: string, password: string): Promise<{ error: string | null }> {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { setProfile(null); setLoading(false); return; }
-      const { data: p } = await supabase.from('profiles').select('*').eq('id', user.id).single();
-      setProfile(p as Profile);
-      if (p?.role === 'student') {
-        const { data: s } = await supabase.from('students').select('id').eq('profile_id', user.id).single();
-        setStudentRecordId(s?.id ?? null);
-      }
+      const r = await fetch(`${API_BASE}/sdsaLogin`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: identifier.trim(), mobile: identifier.trim(), password }),
+      });
+      const d = await r.json();
+      if (!r.ok || !d.ok) return { error: d.error || 'Login failed. Please try again.' };
+      const s: StoredSession = { role: d.role, name: d.name, batch: d.batch || '', status: d.status || '' };
+      localStorage.setItem(KEY, JSON.stringify(s));
+      setSession(s);
+      return { error: null };
     } catch {
-      setProfile(null);
-      setStudentRecordId(null);
-    } finally {
-      setLoading(false);
+      return { error: 'Network problem. Please check your internet and try again.' };
     }
-  }
-
-  async function signIn(email: string, password: string) {
-    if (!isBackendConfigured) {
-      return { error: 'Backend setup pending: Supabase backend is not configured.' };
-    }
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error ? error.message : null };
-  }
-
-  async function resetPassword(email: string) {
-    if (!isBackendConfigured) {
-      return { error: 'Backend setup pending: Supabase backend is not configured.' };
-    }
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/reset-password`,
-    });
-    return { error: error ? error.message : null };
   }
 
   async function signOut() {
-    if (isBackendConfigured) {
-      await supabase.auth.signOut().catch(() => {});
-    }
-    setProfile(null);
-    setStudentRecordId(null);
+    localStorage.removeItem(KEY);
+    setSession(null);
+  }
+
+  async function resetPassword(_identifier: string): Promise<{ error: string | null }> {
+    return {
+      error: 'Password reset is managed by the academy. Please contact us on WhatsApp +91 70437 95279.',
+    };
   }
 
   const value: AuthCtx = {
-    profile, loading, studentRecordId,
-    isStudent: profile?.role === 'student',
-    isTrainer: profile?.role === 'trainer',
-    isStaff: !!profile && STAFF.includes(profile.role),
-    signIn, signOut, resetPassword,
+    profile,
+    loading,
+    isStudent: !!session && session.role === 'student',
+    isTrainer: !!session && session.role === 'trainer',
+    isStaff: !!session && STAFF.includes(session.role),
+    studentRecordId: null,
+    signIn,
+    signOut,
+    resetPassword,
+    session,
   };
+
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

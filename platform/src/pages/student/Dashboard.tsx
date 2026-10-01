@@ -1,71 +1,68 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import supabase from '../../lib/supabaseClient';
+import { Card } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
-import { Card, Stat, Progress, Badge, Alert } from '../../components/ui';
-import type { Student, Assignment, Submission } from '../../types/database';
-import { WEEKS } from '../../data/curriculum';
+import { API_BASE, WHATSAPP_URL } from '../../config';
 
-export default function Dashboard() {
-  const { profile, studentRecordId } = useAuth();
-  const [me, setMe] = useState<Student | null>(null);
-  const [att, setAtt] = useState<{ present: number; total: number }>({ present: 0, total: 0 });
-  const [pending, setPending] = useState(0);
-  const [ann, setAnn] = useState<{ id: string; title: string; body: string }[]>([]);
+interface Announcement { date: string; title: string; details: string; }
+
+export default function SDashboard() {
+  const { session } = useAuth();
+  const [ann, setAnn] = useState<Announcement[] | null>(null);
 
   useEffect(() => {
-    if (!studentRecordId) return;
-    supabase.from('students').select('*, profiles(*), batches(*)').eq('id', studentRecordId).single()
-      .then(({ data }) => setMe(data as Student));
-    supabase.from('attendance').select('status').eq('student_id', studentRecordId)
-      .then(({ data }) => {
-        const rows = data ?? [];
-        setAtt({ present: rows.filter((r: any) => r.status === 'present').length, total: rows.length });
-      });
-    supabase.from('submissions').select('assignment_id').eq('student_id', studentRecordId)
-      .then(async ({ data: subs }) => {
-        const done = new Set((subs ?? []).map((s: any) => s.assignment_id));
-        const { data: asg } = await supabase.from('assignments').select('id').limit(500);
-        setPending((asg ?? []).filter((a: any) => !done.has(a.id)).length);
-      });
-    supabase.from('announcements').select('id,title,body').eq('is_published', true).order('published_at', { ascending: false }).limit(3)
-      .then(({ data }) => setAnn(data ?? []));
-  }, [studentRecordId]);
-
-  const currentWeek = me?.current_week ?? 1;
-  const pct = (currentWeek / 26) * 100;
-  const attPct = att.total ? (att.present / att.total) * 100 : 0;
+    fetch(`${API_BASE}/sdsaGetData`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'announcements' }),
+    })
+      .then((r) => r.json())
+      .then((d) => setAnn(d.ok ? d.announcements : []))
+      .catch(() => setAnn([]));
+  }, []);
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-primary">Namaste, {profile?.full_name?.split(' ')[0]} 👋</h1>
-        <p className="text-gray-500 text-sm">Student ID: <b>{me?.student_id ?? '—'}</b> · Batch: <b>{me?.batches?.name ?? 'To be assigned'}</b> · Admission: <b>{me?.admission_date}</b></p>
+        <h1 className="text-2xl font-extrabold text-primary">Welcome, {session?.name || 'Student'} 👋</h1>
+        <p className="text-sm text-gray-500">Sathamba Digital Saksham Academy — Student Portal</p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Stat label="Overall Progress" value={`${Math.round(pct)}%`} hint={`Week ${currentWeek} of 26`} />
-        <Stat label="Attendance" value={`${Math.round(attPct)}%`} hint={`${att.present}/${att.total} classes present`} />
-        <Stat label="Pending Assignments" value={pending} hint="Submit on time for full feedback" />
-        <Stat label="Current Week" value={`W${String(currentWeek).padStart(2, '0')}`} hint={WEEKS[currentWeek - 1]?.title} />
+
+      <div className="grid sm:grid-cols-3 gap-4">
+        <Card><p className="text-xs font-bold uppercase text-gray-400">Batch</p><p className="font-extrabold text-primary">{session?.batch || 'To be assigned'}</p></Card>
+        <Card><p className="text-xs font-bold uppercase text-gray-400">Status</p><p className="font-extrabold text-primary">{session?.status || 'Active'}</p></Card>
+        <Card><p className="text-xs font-bold uppercase text-gray-400">Program</p><p className="font-extrabold text-primary text-sm">26-Week Digital Skills Program</p></Card>
       </div>
-      <Card><Progress value={pct} /></Card>
+
       <div className="grid md:grid-cols-2 gap-4">
         <Card>
-          <h3 className="font-bold text-primary mb-2">Quick Actions</h3>
-          <div className="flex flex-wrap gap-2">
-            <Link to="/student/course" className="btn-primary !text-xs !px-3 !py-2">My Course</Link>
-            <Link to="/student/assignments" className="btn-accent !text-xs !px-3 !py-2">Assignments</Link>
-            <Link to="/student/workbooks" className="btn-outline !text-xs !px-3 !py-2">Workbooks</Link>
-            <Link to="/student/certificates" className="btn-outline !text-xs !px-3 !py-2">Certificates</Link>
-          </div>
-        </Card>
-        <Card>
-          <h3 className="font-bold text-primary mb-2">Announcements</h3>
-          {ann.length === 0 ? <p className="text-sm text-gray-400">No announcements yet.</p> : (
-            <ul className="space-y-2">
-              {ann.map((a) => <li key={a.id}><Badge tone="accent">New</Badge> <b className="text-sm">{a.title}</b><p className="text-xs text-gray-500">{a.body.slice(0, 90)}</p></li>)}
+          <h2 className="font-extrabold text-primary mb-3">📢 Announcements</h2>
+          {ann === null ? (
+            <p className="text-sm text-gray-500">Loading…</p>
+          ) : ann.length === 0 ? (
+            <p className="text-sm text-gray-500">No announcements yet. New notices from the academy will appear here.</p>
+          ) : (
+            <ul className="space-y-3">
+              {ann.slice(0, 3).map((a, i) => (
+                <li key={i} className="border-l-4 border-accent pl-3">
+                  <p className="font-bold text-gray-800 text-sm">{a.title} <span className="font-normal text-gray-400 text-xs">({a.date})</span></p>
+                  <p className="text-xs text-gray-600">{a.details}</p>
+                </li>
+              ))}
             </ul>
           )}
+          <Link to="/student/announcements" className="text-xs text-accent-dark font-bold underline mt-3 inline-block">View all →</Link>
+        </Card>
+
+        <Card>
+          <h2 className="font-extrabold text-primary mb-3">📚 Quick Links</h2>
+          <ul className="space-y-2 text-sm">
+            <li><Link to="/curriculum" className="text-accent-dark font-semibold underline">Full 26-Week Curriculum</Link></li>
+            <li><Link to="/student/profile" className="text-accent-dark font-semibold underline">My Profile</Link></li>
+            <li><Link to="/student/support" className="text-accent-dark font-semibold underline">Help & Support</Link></li>
+            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="text-accent-dark font-semibold underline">WhatsApp the Academy</a></li>
+          </ul>
+          <p className="text-[11px] text-gray-400 mt-3">Assignments, attendance, results and certificate sections will become active once your batch starts.</p>
         </Card>
       </div>
     </div>

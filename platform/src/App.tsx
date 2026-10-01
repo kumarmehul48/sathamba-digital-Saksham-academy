@@ -24,36 +24,12 @@ import ResetPassword from './pages/auth/ResetPassword';
 
 import SDashboard from './pages/student/Dashboard';
 import SProfile from './pages/student/Profile';
-import SCourse from './pages/student/MyCourse';
-import SWorkbooks from './pages/student/Workbooks';
-import SAssignments from './pages/student/Assignments';
-import SAttendance from './pages/student/Attendance';
-import SAssessments from './pages/student/Assessments';
-import SResults from './pages/student/Results';
-import SPortfolio from './pages/student/Portfolio';
-import SCertificates from './pages/student/Certificates';
 import SAnnouncements from './pages/student/Announcements';
 import SSupport from './pages/student/Support';
+import SComingSoon from './pages/student/ComingSoon';
 
 import ADashboard from './pages/admin/Dashboard';
-import AStudents from './pages/admin/Students';
-import AAdmissions from './pages/admin/Admissions';
-import ABatches from './pages/admin/Batches';
-import ATrainers from './pages/admin/Trainers';
-import ACurriculum from './pages/admin/Curriculum';
-import AWorkbooks from './pages/admin/Workbooks';
-import AAssignments from './pages/admin/Assignments';
-import AAttendance from './pages/admin/Attendance';
-import AAssessments from './pages/admin/Assessments';
-import AResults from './pages/admin/Results';
-import APortfolio from './pages/admin/Portfolio';
-import ACertificates from './pages/admin/Certificates';
-import AAnnouncements from './pages/admin/Announcements';
-import AGallery from './pages/admin/Gallery';
-import AContent from './pages/admin/Content';
-import AEnquiries from './pages/admin/Enquiries';
-import AReports from './pages/admin/Reports';
-import ASettings from './pages/admin/Settings';
+import AManagedInExcel from './pages/admin/ManagedInExcel';
 
 function LoginRouter() {
   const { profile, loading } = useAuth();
@@ -98,14 +74,14 @@ export default function App() {
         <Route index element={<Navigate to="/student/dashboard" replace />} />
         <Route path="dashboard" element={<SDashboard />} />
         <Route path="profile" element={<SProfile />} />
-        <Route path="course" element={<SCourse />} />
-        <Route path="workbooks" element={<SWorkbooks />} />
-        <Route path="assignments" element={<SAssignments />} />
-        <Route path="attendance" element={<SAttendance />} />
-        <Route path="assessments" element={<SAssessments />} />
-        <Route path="results" element={<SResults />} />
-        <Route path="portfolio" element={<SPortfolio />} />
-        <Route path="certificates" element={<SCertificates />} />
+        <Route path="course" element={<SComingSoon />} />
+        <Route path="workbooks" element={<SComingSoon />} />
+        <Route path="assignments" element={<SComingSoon />} />
+        <Route path="attendance" element={<SComingSoon />} />
+        <Route path="assessments" element={<SComingSoon />} />
+        <Route path="results" element={<SComingSoon />} />
+        <Route path="portfolio" element={<SComingSoon />} />
+        <Route path="certificates" element={<SComingSoon />} />
         <Route path="announcements" element={<SAnnouncements />} />
         <Route path="support" element={<SSupport />} />
       </Route>
@@ -114,24 +90,24 @@ export default function App() {
       <Route path="/admin" element={<StaffRoute><AdminLayout /></StaffRoute>}>
         <Route index element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="dashboard" element={<ADashboard />} />
-        <Route path="students" element={<AStudents />} />
-        <Route path="admissions" element={<AAdmissions />} />
-        <Route path="batches" element={<ABatches />} />
-        <Route path="trainers" element={<ATrainers />} />
-        <Route path="curriculum" element={<ACurriculum />} />
-        <Route path="workbooks" element={<AWorkbooks />} />
-        <Route path="assignments" element={<AAssignments />} />
-        <Route path="attendance" element={<AAttendance />} />
-        <Route path="assessments" element={<AAssessments />} />
-        <Route path="results" element={<AResults />} />
-        <Route path="portfolio" element={<APortfolio />} />
-        <Route path="certificates" element={<ACertificates />} />
-        <Route path="announcements" element={<AAnnouncements />} />
-        <Route path="gallery" element={<AGallery />} />
-        <Route path="content" element={<AContent />} />
-        <Route path="enquiries" element={<AEnquiries />} />
-        <Route path="reports" element={<AReports />} />
-        <Route path="settings" element={<ASettings />} />
+        <Route path="students" element={<AManagedInExcel />} />
+        <Route path="admissions" element={<AManagedInExcel />} />
+        <Route path="batches" element={<AManagedInExcel />} />
+        <Route path="trainers" element={<AManagedInExcel />} />
+        <Route path="curriculum" element={<AManagedInExcel />} />
+        <Route path="workbooks" element={<AManagedInExcel />} />
+        <Route path="assignments" element={<AManagedInExcel />} />
+        <Route path="attendance" element={<AManagedInExcel />} />
+        <Route path="assessments" element={<AManagedInExcel />} />
+        <Route path="results" element={<AManagedInExcel />} />
+        <Route path="portfolio" element={<AManagedInExcel />} />
+        <Route path="certificates" element={<AManagedInExcel />} />
+        <Route path="announcements" element={<AManagedInExcel />} />
+        <Route path="gallery" element={<AManagedInExcel />} />
+        <Route path="content" element={<AManagedInExcel />} />
+        <Route path="enquiries" element={<AManagedInExcel />} />
+        <Route path="reports" element={<AManagedInExcel />} />
+        <Route path="settings" element={<AManagedInExcel />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

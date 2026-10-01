@@ -1,57 +1,57 @@
-import { useEffect, useState } from 'react';
-import supabase from '../../lib/supabaseClient';
-import { Stat, Card, Table, Td, Badge } from '../../components/ui';
-import { fmtDate } from '../../lib/utils';
+import { Card } from '../../components/ui';
+import { useAuth } from '../../lib/auth';
+import { SHEET_URL, WHATSAPP_URL } from '../../config';
 
-export default function Dashboard() {
-  const [s, setS] = useState<any>({});
-  useEffect(() => {
-    (async () => {
-      const count = async (table: string, q?: (req: any) => any): Promise<number> => {
-        let req = supabase.from(table).select('id', { count: 'exact', head: true });
-        if (q) req = q(req);
-        const { count: c } = await req; return c ?? 0;
-      };
-      const today = new Date().toISOString().slice(0, 10);
-      setS({
-        totalStudents: await count('students'),
-        activeStudents: await count('students', (r) => r.eq('status', 'active')),
-        pendingAdmissions: await count('admissions', (r) => r.in('status', ['pending', 'under_review'])),
-        activeBatches: await count('batches', (r) => r.eq('status', 'active')),
-        todaysAttendance: await count('attendance', (r) => r.eq('date', today)),
-        assignments: await count('assignments'),
-        assessments: await count('assessments'),
-        certificates: await count('certificates', (r) => r.eq('status', 'issued')),
-        newEnquiries: await count('enquiries', (r) => r.eq('status', 'new')),
-      });
-      const { data: recent } = await supabase.from('admissions').select('*').order('applied_at', { ascending: false }).limit(5);
-      setS((x: any) => ({ ...x, recent: recent ?? [] }));
-    })();
-  }, []);
+const tabs = [
+  { name: 'Admissions', desc: 'Every website admission form entry lands here automatically.' },
+  { name: 'Enquiries', desc: 'Contact-page enquiries with name, mobile and message.' },
+  { name: 'Students', desc: 'Add a row to create a student login instantly (Name, Mobile, Password, Batch, Status).' },
+  { name: 'Admin', desc: 'Your own and staff usernames & passwords. Change them anytime.' },
+  { name: 'Announcements', desc: 'Write a notice here and it appears on the student portal.' },
+];
+
+export default function ADashboard() {
+  const { profile, signOut } = useAuth();
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-extrabold text-primary">Admin Dashboard</h1>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Stat label="Total Students" value={s.totalStudents ?? '…'} />
-        <Stat label="Active Students" value={s.activeStudents ?? '…'} />
-        <Stat label="Pending Admissions" value={s.pendingAdmissions ?? '…'} />
-        <Stat label="Active Batches" value={s.activeBatches ?? '…'} />
-        <Stat label="Today's Attendance" value={s.todaysAttendance ?? '…'} />
-        <Stat label="Assignments" value={s.assignments ?? '…'} />
-        <Stat label="Assessments" value={s.assessments ?? '…'} />
-        <Stat label="Issued Certificates" value={s.certificates ?? '…'} />
-        <Stat label="New Enquiries" value={s.newEnquiries ?? '…'} />
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <h1 className="text-2xl font-extrabold text-primary">Admin — Manage Everything in the Data Excel</h1>
+          <p className="text-sm text-gray-500">Welcome, {profile?.full_name}</p>
+        </div>
+        <button onClick={signOut} className="text-xs bg-white/10 px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary-dark">Logout</button>
       </div>
+
+      <Card className="text-center py-8">
+        <p className="text-sm text-gray-500 mb-1">All academy data lives in one Google Sheet on your Drive</p>
+        <h2 className="text-xl font-extrabold text-primary mb-4">SDSA Academy Data</h2>
+        <a href={SHEET_URL} target="_blank" rel="noreferrer" className="btn-primary inline-block text-base px-6 py-3">
+          📊 Open Data Excel
+        </a>
+        <p className="text-[11px] text-gray-400 mt-3">
+          Tip: In Google Sheets, File → Download → Microsoft Excel (.xlsx) gets you a real Excel file anytime.
+        </p>
+      </Card>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        {tabs.map((t) => (
+          <Card key={t.name}>
+            <h3 className="font-extrabold text-primary">{t.name}</h3>
+            <p className="text-sm text-gray-600 mt-1">{t.desc}</p>
+          </Card>
+        ))}
+      </div>
+
       <Card>
-        <h3 className="font-bold text-primary mb-3">Recent Applications</h3>
-        <Table head={['Name', 'Mobile', 'Applied', 'Status']}>
-          {(s.recent ?? []).map((a: any) => (
-            <tr key={a.id}>
-              <Td><b>{a.name}</b></Td><Td>{a.mobile}</Td><Td>{fmtDate(a.applied_at)}</Td>
-              <Td><Badge tone={a.status === 'approved' || a.status === 'enrolled' ? 'success' : a.status === 'rejected' ? 'danger' : 'accent'}>{a.status}</Badge></Td>
-            </tr>
-          ))}
-        </Table>
+        <h3 className="font-bold text-primary mb-2">Student login kaise banayein (How to)</h3>
+        <ol className="text-sm text-gray-700 list-decimal ml-5 space-y-1">
+          <li>Data Excel mein <b>Students</b> tab kholein</li>
+          <li>Nayi row mein: naam, mobile number, password, batch, status likhein</li>
+          <li>Student website par mobile + password se login kar sakta hai — turant, bina kisi setup ke</li>
+        </ol>
+        <p className="text-xs text-gray-400 mt-3">
+          Any question? <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="text-accent-dark underline">WhatsApp support</a>
+        </p>
       </Card>
     </div>
   );

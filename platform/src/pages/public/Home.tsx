@@ -32,7 +32,7 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-gray-200 mb-4 font-semibold text-sm sm:text-base">Learn • Practice • Apply • Grow</p>
           <div className="inline-block bg-white/10 backdrop-blur border border-accent/40 rounded-xl px-4 py-2 mb-6">
             <p className="text-xs text-accent-light font-medium">Managed & Operated by</p>
-            <p className="text-sm font-extrabold text-white">Shivansh Digital Sagacity & Alleviation</p>
+            <p className="text-sm font-extrabold text-white flex items-center gap-2 justify-center"><img src="sdsa-trust-logo.webp" alt="trust" className="w-6 h-6 rounded-full inline-block" />Shivansh Digital Sagacity & Alleviation</p>
             <p className="text-xs text-accent italic">Nurturing Wisdom, Sustaining Lives</p>
           </div>
           <p className="max-w-2xl mx-auto text-gray-300 mb-8 text-sm sm:text-base">Digital Skills • Computer Education • AI Skills • Practical Learning - a planned practical 26-week journey in Sathamba, Aravalli district, Gujarat.</p>
@@ -65,8 +65,13 @@ export default function Home() {
       {/* DEDICATED ABOUT MANAGING TRUST SECTION */}
       <section className="section-pad bg-surface border-y border-gray-200">
         <div className="container-sdsa text-center max-w-3xl mx-auto">
-          <Badge tone="accent">Managing Trust</Badge>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>
+          <div className="flex items-center gap-4">
+            <img src="sdsa-trust-logo.webp" alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent" />
+            <div>
+              <Badge tone="accent">Managing Trust</Badge>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>
+            </div>
+          </div>
           <p className="text-accent font-bold mb-4">Nurturing Wisdom, Sustaining Lives</p>
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             Sathamba Digital Saksham Academy (SDSA) is managed and operated by <b>Shivansh Digital Sagacity & Alleviation</b>. The managing trust is dedicated to expanding access to digital knowledge, encouraging thoughtful application of technology, and supporting rural and regional development. Through education and practical skill building, the trust strives toward nurturing wisdom and sustaining lives across Sathamba and surrounding regions.

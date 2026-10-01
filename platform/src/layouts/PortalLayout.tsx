@@ -3,16 +3,8 @@ import { useAuth } from '../lib/auth';
 
 const studentNav = [
   { to: '/student/dashboard', label: 'Dashboard', end: true },
-  { to: '/student/profile', label: 'My Profile' },
-  { to: '/student/course', label: 'My Course' },
-  { to: '/student/workbooks', label: 'My Workbooks' },
-  { to: '/student/assignments', label: 'My Assignments' },
-  { to: '/student/attendance', label: 'My Attendance' },
-  { to: '/student/assessments', label: 'My Assessments' },
-  { to: '/student/results', label: 'My Results' },
-  { to: '/student/portfolio', label: 'My Portfolio' },
-  { to: '/student/certificates', label: 'My Certificates' },
   { to: '/student/announcements', label: 'Announcements' },
+  { to: '/student/profile', label: 'My Profile' },
   { to: '/student/support', label: 'Help & Support' },
 ];
 
@@ -47,24 +39,6 @@ export function StudentLayout() {
 
 const adminNav = [
   { to: '/admin/dashboard', label: 'Dashboard', end: true },
-  { to: '/admin/students', label: 'Students' },
-  { to: '/admin/admissions', label: 'Admissions' },
-  { to: '/admin/batches', label: 'Batches' },
-  { to: '/admin/trainers', label: 'Trainers' },
-  { to: '/admin/curriculum', label: 'Curriculum' },
-  { to: '/admin/workbooks', label: 'Workbooks' },
-  { to: '/admin/assignments', label: 'Assignments' },
-  { to: '/admin/attendance', label: 'Attendance' },
-  { to: '/admin/assessments', label: 'Assessments' },
-  { to: '/admin/results', label: 'Results' },
-  { to: '/admin/portfolio', label: 'Portfolio Review' },
-  { to: '/admin/certificates', label: 'Certificates' },
-  { to: '/admin/announcements', label: 'Announcements' },
-  { to: '/admin/gallery', label: 'Gallery' },
-  { to: '/admin/content', label: 'Website Content' },
-  { to: '/admin/enquiries', label: 'Enquiries' },
-  { to: '/admin/reports', label: 'Reports' },
-  { to: '/admin/settings', label: 'Settings' },
 ];
 
 export function AdminLayout() {

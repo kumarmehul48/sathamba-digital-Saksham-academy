@@ -23,8 +23,16 @@ export default function Login() {
     setErr(''); setBusy(true);
     const { error } = await signIn(id, pw);
     setBusy(false);
-    if (error) setErr(error);
-    else nav('/');
+    if (error) { setErr(error); return; }
+    // role ke hisaab se sahi dashboard pe bhejo
+    try {
+      const s = JSON.parse(localStorage.getItem('sdsa_session') || '{}');
+      if (s.role === 'admin' || s.role === 'super_admin') nav('/admin/dashboard');
+      else if (s.role === 'trust') nav('/trust/dashboard');
+      else nav('/student/dashboard');
+    } catch {
+      nav('/');
+    }
   }
 
   return (

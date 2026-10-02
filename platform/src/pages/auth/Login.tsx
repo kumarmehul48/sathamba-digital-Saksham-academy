@@ -17,6 +17,7 @@ export default function Login() {
   const [pw, setPw] = useState('');
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
+  const [who, setWho] = useState<'student' | 'trust'>('student');
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -38,19 +39,18 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-primary grid place-items-center p-4">
       <div className="bg-white rounded-xl p-8 w-full max-w-sm shadow-xl">
-        <div className="text-center mb-6">
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <div className="text-center">
-              <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-14 h-14 mx-auto rounded-full object-cover border-2 border-primary/30" />
-              <p className="text-[10px] font-bold text-gray-500 mt-1">Student · Academy</p>
-            </div>
-            <div className="text-center">
-              <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-14 h-14 mx-auto rounded-full object-cover border-2 border-accent/50" />
-              <p className="text-[10px] font-bold text-gray-500 mt-1">Trust · Staff</p>
-            </div>
+        <div className="text-center mb-5">
+          <img src={asset(who === 'trust' ? 'sdsa-trust-logo.webp' : 'sdsa-badge.webp')}
+               alt={who === 'trust' ? 'SDSA Trust' : 'SDSA Academy'}
+               className="w-16 h-16 mx-auto rounded-full mb-3 object-cover" />
+          <div className="flex justify-center gap-2 mb-3">
+            <button type="button" onClick={() => setWho('student')}
+              className={`text-xs font-bold px-4 py-1.5 rounded-full border-2 transition ${who === 'student' ? 'bg-primary text-white border-primary' : 'bg-white text-gray-500 border-gray-200 hover:border-primary/40'}`}>🎓 Student</button>
+            <button type="button" onClick={() => setWho('trust')}
+              className={`text-xs font-bold px-4 py-1.5 rounded-full border-2 transition ${who === 'trust' ? 'bg-accent-dark text-primary border-accent-dark' : 'bg-white text-gray-500 border-gray-200 hover:border-accent/60'}`}>🤝 Trust / Staff</button>
           </div>
-          <h1 className="text-lg font-extrabold text-primary">Student • Trust • Staff Login</h1>
-          <p className="text-xs text-gray-500">SDSA Academy · Shivansh Digital Sagacity &amp; Alleviation</p>
+          <h1 className="text-lg font-extrabold text-primary">{who === 'trust' ? 'Trust • Staff Login' : 'Student Login'}</h1>
+          <p className="text-xs text-gray-500">{who === 'trust' ? 'Shivansh Digital Sagacity & Alleviation' : 'Sathamba Digital Saksham Academy'}</p>
         </div>
         {session && (
           <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
@@ -65,7 +65,7 @@ export default function Login() {
           {err && <Alert tone="error">{err}</Alert>}
           <div>
             <label className="label-sdsa">Mobile Number / Username</label>
-            <input required disabled={busy} className="input-sdsa" placeholder="Student: mobile no | Trust/Staff: username" value={id} onChange={(e) => setId(e.target.value)} />
+            <input required disabled={busy} className="input-sdsa" placeholder={who === 'trust' ? 'Username (trust/staff)' : 'Mobile number (student)'} value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
             <label className="label-sdsa">Password</label>

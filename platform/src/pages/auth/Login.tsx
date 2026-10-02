@@ -25,11 +25,7 @@ export default function Login() {
     <div className="min-h-screen bg-primary grid place-items-center p-4">
       <div className="bg-white rounded-xl p-8 w-full max-w-sm shadow-xl">
         <div className="text-center mb-6">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-14 h-14 rounded-full object-cover border-2 border-primary/15" />
-            <span className="text-gray-300 font-bold">+</span>
-            <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-14 h-14 rounded-full object-cover border-2 border-accent/50" />
-          </div>
+          <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-14 h-14 mx-auto rounded-full mb-3 object-cover" />
           <h1 className="text-lg font-extrabold text-primary">Student • Trust • Staff Login</h1>
           <p className="text-xs text-gray-500">SDSA Academy · Shivansh Digital Sagacity &amp; Alleviation</p>
         </div>

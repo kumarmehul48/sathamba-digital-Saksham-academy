@@ -5,8 +5,14 @@ import { Button, Alert } from '../../components/ui';
 import { asset,  WHATSAPP_URL } from '../../config';
 
 export default function Login() {
-  const { signIn } = useAuth();
+  const { signIn, signOut, session } = useAuth();
   const nav = useNavigate();
+  function continueTo() {
+    const r = session?.role;
+    if (r === 'admin' || r === 'super_admin') nav('/admin/dashboard');
+    else if (r === 'trust') nav('/trust/dashboard');
+    else nav('/student/dashboard');
+  }
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [err, setErr] = useState('');
@@ -29,6 +35,15 @@ export default function Login() {
           <h1 className="text-lg font-extrabold text-primary">Student • Trust • Staff Login</h1>
           <p className="text-xs text-gray-500">SDSA Academy · Shivansh Digital Sagacity &amp; Alleviation</p>
         </div>
+        {session && (
+          <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
+            <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name} ({session.role})</p>
+            <div className="flex gap-2 justify-center">
+              <button type="button" onClick={continueTo} className="text-xs bg-primary text-white font-bold px-3 py-1.5 rounded-lg">Continue to Dashboard →</button>
+              <button type="button" onClick={async () => { await signOut(); }} className="text-xs bg-white border border-gray-300 text-gray-600 font-bold px-3 py-1.5 rounded-lg">Logout</button>
+            </div>
+          </div>
+        )}
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>

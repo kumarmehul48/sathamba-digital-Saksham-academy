@@ -36,12 +36,9 @@ import ALogins from './pages/admin/Logins';
 import AManagedInExcel from './pages/admin/ManagedInExcel';
 
 function LoginRouter() {
-  const { profile, loading } = useAuth();
+  const { loading } = useAuth();
   if (loading) return <div className="min-h-screen grid place-items-center text-primary font-semibold">Loading…</div>;
-  if (!profile) return <Login />;
-  if (profile.role === 'admin' || profile.role === 'super_admin') return <Navigate to="/admin/dashboard" replace />;
-  if (profile.role === 'trust') return <Navigate to="/trust/dashboard" replace />;
-  return <Navigate to="/student/dashboard" replace />;
+  return <Login />;
 }
 
 export default function App() {

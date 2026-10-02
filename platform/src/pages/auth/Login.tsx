@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../lib/auth';
 import { Button, Alert } from '../../components/ui';
-import { WHATSAPP_URL } from '../../config';
+import { asset,  WHATSAPP_URL } from '../../config';
 
 export default function Login() {
   const { signIn } = useAuth();
@@ -25,9 +25,13 @@ export default function Login() {
     <div className="min-h-screen bg-primary grid place-items-center p-4">
       <div className="bg-white rounded-xl p-8 w-full max-w-sm shadow-xl">
         <div className="text-center mb-6">
-          <img src="sdsa-badge.webp" alt="SDSA" className="w-14 h-14 mx-auto rounded-full mb-3 object-cover" />
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-14 h-14 rounded-full object-cover border-2 border-primary/15" />
+            <span className="text-gray-300 font-bold">+</span>
+            <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-14 h-14 rounded-full object-cover border-2 border-accent/50" />
+          </div>
           <h1 className="text-lg font-extrabold text-primary">Student • Trust • Staff Login</h1>
-          <p className="text-xs text-gray-500">Sathamba Digital Saksham Academy</p>
+          <p className="text-xs text-gray-500">SDSA Academy · Shivansh Digital Sagacity &amp; Alleviation</p>
         </div>
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}

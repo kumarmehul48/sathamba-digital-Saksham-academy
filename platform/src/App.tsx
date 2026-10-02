@@ -32,6 +32,7 @@ import SComingSoon from './pages/student/ComingSoon';
 import TrustDashboard from './pages/trust/Dashboard';
 
 import ADashboard from './pages/admin/Dashboard';
+import ALogins from './pages/admin/Logins';
 import AManagedInExcel from './pages/admin/ManagedInExcel';
 
 function LoginRouter() {
@@ -103,6 +104,7 @@ export default function App() {
       <Route path="/admin" element={<StaffRoute><AdminLayout /></StaffRoute>}>
         <Route index element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="dashboard" element={<ADashboard />} />
+        <Route path="logins" element={<ALogins />} />
         <Route path="students" element={<AManagedInExcel />} />
         <Route path="admissions" element={<AManagedInExcel />} />
         <Route path="batches" element={<AManagedInExcel />} />

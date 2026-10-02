@@ -1,5 +1,6 @@
 import { NavLink, Outlet, Link } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
+import { asset } from '../config';
 
 const studentNav = [
   { to: '/student/dashboard', label: 'Dashboard', end: true },
@@ -39,6 +40,7 @@ export function StudentLayout() {
 
 const adminNav = [
   { to: '/admin/dashboard', label: 'Dashboard', end: true },
+  { to: '/admin/logins', label: 'Logins', end: true },
 ];
 
 export function AdminLayout() {
@@ -76,7 +78,10 @@ export function TrustLayout() {
   return (
     <div className="min-h-screen bg-surface flex">
       <aside className="w-64 shrink-0 hidden md:flex flex-col bg-primary text-white">
-        <Link to="/" className="p-4 font-extrabold border-b border-white/10">Shivansh Trust <span className="text-accent">Portal</span></Link>
+        <Link to="/" className="p-4 border-b border-white/10 flex items-center gap-2">
+          <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
+          <span className="font-extrabold">SDSA Trust <span className="text-accent">Portal</span></span>
+        </Link>
         <nav className="flex-1 overflow-y-auto py-2">
           <NavLink to="/trust/dashboard" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>Dashboard</NavLink>
         </nav>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card, Button, Alert } from '../../components/ui';
-import { API_BASE } from '../../config';
+import { asset,  API_BASE } from '../../config';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', mobile: '', email: '', location: '', course_interest: '', message: '' });
@@ -68,7 +68,7 @@ export default function Contact() {
           </Card>
           <Card className="bg-primary-50">
             <div className="flex items-center gap-3">
-              <img src="sdsa-trust-logo.webp" alt="Trust logo" className="w-14 h-14 rounded-full object-cover" />
+              <img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-14 h-14 rounded-full object-cover" />
               <div>
                 <h3 className="font-bold text-primary">Managing Trust</h3>
                 <p className="text-gray-800 text-sm font-semibold">Shivansh Digital Sagacity & Alleviation</p>

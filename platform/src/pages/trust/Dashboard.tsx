@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Badge } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
-import { API_BASE, SHEET_URL } from '../../config';
+import { asset,  API_BASE, SHEET_URL } from '../../config';
 
 interface TrustData {
   ok: boolean;
@@ -36,7 +36,7 @@ export default function TrustDashboard() {
     <div className="space-y-6">
       {/* Trust header */}
       <div className="bg-gradient-to-r from-primary to-primary-light text-white rounded-xl p-6 flex items-center gap-4 flex-wrap">
-        <img src="sdsa-trust-logo.webp" alt="Trust logo" className="w-16 h-16 rounded-full object-cover border-2 border-accent bg-white/10" />
+        <img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-16 h-16 rounded-full object-cover border-2 border-accent bg-white/10" />
         <div className="flex-1 min-w-[240px]">
           <Badge tone="accent">Shivansh Digital Sagacity &amp; Alleviation</Badge>
           <h1 className="text-xl sm:text-2xl font-extrabold mt-2">Trust Dashboard</h1>

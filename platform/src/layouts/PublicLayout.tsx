@@ -1,4 +1,5 @@
 import { NavLink, Outlet, Link } from 'react-router-dom';
+import { asset } from '../config';
 
 const links = [
   { to: '/', label: 'Home' }, { to: '/about', label: 'About' },
@@ -13,7 +14,7 @@ export default function PublicLayout() {
       <header className="bg-primary text-white sticky top-0 z-40 shadow-md">
         <div className="container-sdsa flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-2.5 font-extrabold">
-            <img src="sdsa-badge.webp" alt="SDSA logo" className="w-10 h-10 rounded-full object-cover bg-accent-dark" />
+            <img src={asset("sdsa-badge.webp")} alt="SDSA logo" className="w-10 h-10 rounded-full object-cover bg-accent-dark" />
             <span className="leading-tight text-sm sm:text-base">
               Sathamba Digital Saksham Academy (SDSA)
               <span className="block text-[11px] font-semibold text-white/90">સાઠંબા ડિજિટલ સક્ષમ એકેડમી</span>
@@ -45,7 +46,7 @@ export default function PublicLayout() {
             <p className="text-accent text-xs mb-3 font-semibold">Learn • Practice • Apply • Grow | શીખીએ • પ્રેક્ટિસ કરીએ • આગળ વધીએ</p>
             <div className="border-t border-white/10 pt-3 mt-3">
               <div className="flex items-center gap-2">
-                <img src="sdsa-trust-logo.webp" alt="Trust logo" className="w-8 h-8 rounded-full object-cover" />
+                <img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-8 h-8 rounded-full object-cover" />
                 <div>
                   <p className="text-xs font-bold text-accent-light">Managing Trust:</p>
                   <p className="font-bold text-white text-sm">Shivansh Digital Sagacity & Alleviation</p>

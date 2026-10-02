@@ -1,6 +1,6 @@
 import { Card } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
-import { WHATSAPP_URL } from '../../config';
+import { asset,  WHATSAPP_URL } from '../../config';
 
 export default function SProfile() {
   const { session } = useAuth();
@@ -9,7 +9,7 @@ export default function SProfile() {
       <h1 className="text-2xl font-extrabold text-primary mb-4">My Profile</h1>
       <Card className="space-y-3">
         <div className="flex items-center gap-4">
-          <img src="sdsa-badge.webp" alt="SDSA" className="w-16 h-16 rounded-full object-cover" />
+          <img src={asset("sdsa-badge.webp")} alt="SDSA" className="w-16 h-16 rounded-full object-cover" />
           <div>
             <p className="text-lg font-extrabold text-primary">{session?.name}</p>
             <p className="text-xs text-gray-500">Student — Sathamba Digital Saksham Academy</p>

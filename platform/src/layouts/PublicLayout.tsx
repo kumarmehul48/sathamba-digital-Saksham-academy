@@ -1,5 +1,6 @@
 import { NavLink, Outlet, Link } from 'react-router-dom';
 import { asset } from '../config';
+import VisitorQuiz from '../components/VisitorQuiz';
 
 const links = [
   { to: '/', label: 'Home' }, { to: '/about', label: 'About' },
@@ -84,6 +85,7 @@ export default function PublicLayout() {
           © {new Date().getFullYear()} Sathamba Digital Saksham Academy (SDSA). Managed by Shivansh Digital Sagacity & Alleviation (Nurturing Wisdom, Sustaining Lives). All rights reserved.
         </div>
       </footer>
+      <VisitorQuiz />
       <a href="https://wa.me/917043795279" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"
          className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] shadow-lg hover:scale-105 transition grid place-items-center">
         <svg viewBox="0 0 32 32" className="w-7 h-7 fill-white" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.2 1.6h.5c6.6 0 12-5.4 12-12S23.1 3 16.6 3H16zm.1 22.4c-2 0-3.9-.5-5.5-1.6l-.4-.2-4.3 1.3 1.3-4.2-.3-.4C5.6 18.6 5 16.9 5 15c0-6 4.9-10.9 11-10.9h.1c6 0 10.9 4.9 10.9 10.9s-4.9 10.4-10.9 10.4zm6.2-8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.6.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.2-.2-.5-.3z"/></svg>

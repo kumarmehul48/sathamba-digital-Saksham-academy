@@ -14,7 +14,10 @@ export function StudentLayout() {
   return (
     <div className="min-h-screen bg-surface flex">
       <aside className="w-64 shrink-0 hidden md:flex flex-col bg-primary text-white">
-        <Link to="/" className="p-4 font-extrabold border-b border-white/10">SDSA <span className="text-accent">Student Portal</span></Link>
+        <Link to="/" className="p-4 border-b border-white/10 flex items-center gap-2">
+          <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
+          <span className="font-extrabold">SDSA <span className="text-accent">Student Portal</span></span>
+        </Link>
         <nav className="flex-1 overflow-y-auto py-2">
           {studentNav.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.end}
@@ -48,7 +51,10 @@ export function AdminLayout() {
   return (
     <div className="min-h-screen bg-surface flex">
       <aside className="w-60 shrink-0 hidden lg:flex flex-col bg-primary-dark text-white">
-        <Link to="/admin/dashboard" className="p-4 font-extrabold border-b border-white/10">SDSA <span className="text-accent">Admin</span></Link>
+        <Link to="/admin/dashboard" className="p-4 border-b border-white/10 flex items-center gap-2">
+          <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
+          <span className="font-extrabold">SDSA <span className="text-accent">Admin</span></span>
+        </Link>
         <nav className="flex-1 overflow-y-auto py-2 text-[13px]">
           {adminNav.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.end}

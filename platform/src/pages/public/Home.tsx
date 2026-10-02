@@ -35,7 +35,7 @@ export default function Home() {
             <p className="text-sm font-extrabold text-white flex items-center gap-2 justify-center"><img src="sdsa-trust-logo.webp" alt="trust" className="w-6 h-6 rounded-full inline-block" />Shivansh Digital Sagacity & Alleviation</p>
             <p className="text-xs text-accent italic">Nurturing Wisdom, Sustaining Lives</p>
           </div>
-          <p className="max-w-2xl mx-auto text-gray-300 mb-8 text-sm sm:text-base">Digital Skills • Computer Education • AI Skills • Practical Learning - a planned practical 26-week journey in Sathamba, Aravalli district, Gujarat.</p>
+          <p className="max-w-2xl mx-auto text-gray-300 mb-8 text-sm sm:text-base">In the spirit of India's Digital India Mission and the digital-literacy goals of NEP 2020, SDSA brings a practical, hands-on 26-week digital skills journey to Sathamba, Aravalli district, Gujarat - from computer fundamentals to practical AI skills, step by step.</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/curriculum" className="btn-accent">Explore 26-Week Course</Link>
             <Link to="/apply" className="btn-primary !bg-white !text-primary">Inquire / Apply</Link>
@@ -49,7 +49,7 @@ export default function Home() {
         <div className="container-sdsa grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="h-section">About SDSA</h2>
-            <p className="text-gray-600">Sathamba Digital Saksham Academy (SDSA) is a practical digital education initiative in Sathamba, Aravalli district, Gujarat. We believe digital skills are essential for everyone - students, job-seekers, local businesses, and community members.</p>
+            <p className="text-gray-600">Sathamba Digital Saksham Academy (SDSA) is a practical digital education initiative in Sathamba, Aravalli district, Gujarat - built to carry the goals of India's Digital India Mission and the National Digital Literacy Mission to the local, grassroots level. We believe digital skills are essential for everyone - students, job-seekers, local businesses, and community members.</p>
             <p className="text-gray-600 mt-3">Our planned practical 26-week program guides learners step by step: computer fundamentals, office tools, internet safety, cloud application, and practical AI usage - emphasized through hands-on practice and real project work.</p>
             <Link to="/about" className="btn-outline mt-6 inline-block">Know More</Link>
           </div>

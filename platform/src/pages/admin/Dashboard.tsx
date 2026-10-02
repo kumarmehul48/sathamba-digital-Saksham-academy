@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
 import { SHEET_URL, WHATSAPP_URL } from '../../config';
@@ -31,6 +32,12 @@ export default function ADashboard() {
         <p className="text-[11px] text-gray-400 mt-3">
           Tip: In Google Sheets, File → Download → Microsoft Excel (.xlsx) gets you a real Excel file anytime.
         </p>
+      </Card>
+
+      <Card className="bg-primary-50 border border-accent/30">
+        <h3 className="font-extrabold text-primary mb-1">🔐 Logins — student &amp; trust</h3>
+        <p className="text-sm text-gray-600 mb-3">Create, change passwords or remove <b>student</b> and <b>trust member</b> logins directly from the portal — Excel kholne ki zaroorat nahi.</p>
+        <Link to="/admin/logins" className="btn-primary inline-block text-sm">Open Logins Manager →</Link>
       </Card>
 
       <div className="grid md:grid-cols-2 gap-4">

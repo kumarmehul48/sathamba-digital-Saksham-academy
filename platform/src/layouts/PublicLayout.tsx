@@ -4,7 +4,7 @@ const links = [
   { to: '/', label: 'Home' }, { to: '/about', label: 'About' },
   { to: '/course', label: 'Course' }, { to: '/curriculum', label: 'Curriculum' },
   { to: '/student-life', label: 'Student Life' }, { to: '/gallery', label: 'Gallery' },
-  { to: '/faq', label: 'FAQ' }, { to: '/contact', label: 'Contact' }, { to: '/campaign', label: 'Free Demo' },
+  { to: '/faq', label: 'FAQ' }, { to: '/contact', label: 'Contact' }, { to: '/campaign', label: 'Free Demo' }, { to: '/cyber-law', label: 'Cyber Law' },
 ];
 
 export default function PublicLayout() {
@@ -64,6 +64,7 @@ export default function PublicLayout() {
               <li><Link to="/gallery" className="hover:text-accent">Gallery</Link></li>
               <li><Link to="/apply" className="hover:text-accent">Inquire / Apply</Link></li>
               <li><Link to="/campaign" className="hover:text-accent">Free Demo Class</Link></li>
+              <li><Link to="/cyber-law" className="hover:text-accent">Cyber Law Course</Link></li>
               <li><Link to="/login" className="hover:text-accent">Student Login</Link></li>
               <li><Link to="/verify-certificate" className="hover:text-accent">Verify Certificate</Link></li>
             </ul>

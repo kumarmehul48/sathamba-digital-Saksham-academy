@@ -57,7 +57,7 @@ const COURSES = [
   { ic: '🏆', t: ['Zero to Pro (Full)', 'શૂન્યથી પ્રો (સંપૂર્ણ)'], d: ['Everything above in one 26-week journey + certificate + career counseling + interview preparation.', 'ઉપરનું બધું 26 અઠવાડિયાની એક યાત્રામાં + સર્ટિફિકેટ + કારકિર્દી માર્ગદર્શન + ઇન્ટરવ્યૂ તૈયારી.'], w: ['26 weeks — flagship', '26 અઠવાડિયા — ફ્લેગશિપ'] },
 ];
 
-const COURSE_OPTIONS = ['Computer Basics', 'MS Office Pro', 'Tally + GST', 'Typing Speed', 'Digital India Skills', 'Zero to Pro — Full (26 weeks)'];
+const COURSE_OPTIONS = ['Cyber Law Course (10 sessions)', 'Computer Basics', 'MS Office Pro', 'Tally + GST', 'Typing Speed', 'Digital India Skills', 'Zero to Pro — Full (26 weeks)'];
 
 export default function Campaign() {
   const [gu, setGu] = useState(typeof window !== 'undefined' && localStorage.getItem('sdsa_lang') === 'gu');

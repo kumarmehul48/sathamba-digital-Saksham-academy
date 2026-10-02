@@ -15,6 +15,7 @@ import Faq from './pages/public/Faq';
 import Contact from './pages/public/Contact';
 import Apply from './pages/public/Apply';
 import Campaign from './pages/public/Campaign';
+import CyberLaw from './pages/public/CyberLaw';
 import VerifyCertificate from './pages/public/VerifyCertificate';
 import Privacy from './pages/public/Privacy';
 import Terms from './pages/public/Terms';
@@ -56,6 +57,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Apply />} />
         <Route path="/campaign" element={<Campaign />} />
+        <Route path="/cyber-law" element={<CyberLaw />} />
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
         <Route path="/verify-certificate/:certificateId" element={<VerifyCertificate />} />
         <Route path="/privacy" element={<Privacy />} />

@@ -50,6 +50,20 @@ const T = {
   who3: ['Job-seekers — cyber law skills stand out in interviews', 'નોકરી શોધનારા — ઇન્ટરવ્યૂમાં સાયબર કાયદાનું જ્ઞાન અલગ ઓળખ આપે'],
   who4: ['Everyone — whose bank account or WhatsApp was ever misused', 'દરેક — જેનું બેંક ખાતું કે WhatsApp ક્યારેય ખોટું વપરાયું હોય'],
   moreComing: ['Full lessons for sessions 2–10 are added as the course grows.', 'સત્ર 2–10 ના સંપૂર્ણ પાઠ કોર્સ આગળ વધે તેમ ઉમેરાશે.'],
+  meta: ['10 Sessions · 5 Weeks · English + ગુજરાતી', '10 સત્ર · 5 અઠવાડિયા · અંગ્રેજી + ગુજરાતી'],
+  hl1: ['Learn the legal foundations', 'કાયદાના પાયાની સમજ'],
+  hl2: ['Explore real-world scenarios', 'વાસ્તવિક ઉદાહરણો'],
+  hl3: ['Build practical awareness', 'વ્યવહારુ જાગૃતિ'],
+  detailKicker: ['Course Details', 'કોર્સની વિગતો'],
+  detailTitle: ['Everything included in this course', 'આ કોર્સમાં શું શું છે'],
+  d1t: ['10 detailed sessions', '10 વિગતવાર સત્ર'],
+  d1p: ['Complete curriculum — from the IT Act 2000 to AI and cryptocurrency law, cybercrime complaints and frozen bank accounts.', 'સંપૂર્ણ અભ્યાસક્રમ — IT અધિનિયમ 2000 થી AI અને ક્રિપ્ટોકરન્સી કાયદા, સાયબર ફરિયાદ અને બેંક ખાતા ફ્રીઝ સુધી.'],
+  d2t: ['Bilingual lessons — EN + ગુજરાતી', 'દ્વિભાષી પાઠ — EN + ગુજરાતી'],
+  d2p: ['Every lesson written in both English and Gujarati, in simple language anyone can follow.', 'દરેક પાઠ અંગ્રેજી અને ગુજરાતી બંનેમાં, સરળ ભાષામાં.'],
+  d3t: ['Objectives, activities and references', 'હેતુઓ, પ્રવૃત્તિઓ અને સંદર્ભો'],
+  d3p: ['Each lesson has clear learning objectives, a think-and-reveal activity, and official government references to read more.', 'દરેક પાઠમાં સ્પષ્ટ હેતુઓ, વિચારો-જવાબ જુઓ પ્રવૃત્તિ અને સરકારી સંદર્ભો.'],
+  d4t: ['Certificate and career guidance', 'સર્ટિફિકેટ અને કારકિર્દી માર્ગદર્શન'],
+  d4p: ['Final session covers revision, doubt-solving, certificate instructions and career guidance.', 'છેલ્લુ સત્ર પુનરાવર્તન, શંકા સમાધાન, સર્ટિફિકેટ માહિતી અને કારકિર્દી માર્ગદર્શન આવરે છે.'],
 };
 
 export default function CyberLaw() {
@@ -74,6 +88,15 @@ export default function CyberLaw() {
         <div className="flex flex-wrap gap-3 justify-center">
           <a href="https://wa.me/917043795279?text=Hi%2C%20I%20want%20to%20join%20the%20Cyber%20Law%20Course" target="_blank" rel="noreferrer" className="bg-accent text-primary-dark font-bold px-7 py-3.5 rounded-xl hover:bg-accent-light transition">{t('cta1')}</a>
           <a href="#curriculum" className="border-2 border-white/50 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-white/10 transition">{t('cta2')}</a>
+        </div>
+        <p className="mt-6 text-accent font-bold text-sm">📅 {t('meta')}</p>
+      </section>
+
+      <section className="bg-primary text-white py-6">
+        <div className="container-sdsa grid grid-cols-1 sm:grid-cols-3 gap-3 text-center text-sm font-semibold">
+          <div className="bg-white/5 border border-white/15 rounded-xl py-3 px-3"><span className="text-accent font-extrabold mr-2">01</span>{t('hl1')}</div>
+          <div className="bg-white/5 border border-white/15 rounded-xl py-3 px-3"><span className="text-accent font-extrabold mr-2">02</span>{t('hl2')}</div>
+          <div className="bg-white/5 border border-white/15 rounded-xl py-3 px-3"><span className="text-accent font-extrabold mr-2">03</span>{t('hl3')}</div>
         </div>
       </section>
 
@@ -106,6 +129,16 @@ export default function CyberLaw() {
 
       <section className="py-16 px-4 bg-white">
         <div className="container-sdsa max-w-3xl">
+          <p className="text-accent-dark font-bold text-xs uppercase tracking-widest mb-2">{t('detailKicker')}</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mb-8">{t('detailTitle')}</h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-12">
+            {[['d1t','d1p'],['d2t','d2p'],['d3t','d3p'],['d4t','d4p']].map((k,i)=>(
+              <div key={i} className="bg-primary-50 rounded-xl border border-gray-100 p-5">
+                <h3 className="font-bold text-primary text-sm mb-1.5">{t(k[0] as keyof typeof T)}</h3>
+                <p className="text-sm text-gray-600">{t(k[1] as keyof typeof T)}</p>
+              </div>
+            ))}
+          </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mb-8">{t('whoTitle')}</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {['who1', 'who2', 'who3', 'who4'].map((k, i) => (

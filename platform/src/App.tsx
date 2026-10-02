@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
-import { StudentLayout, AdminLayout } from './layouts/PortalLayout';
-import { StudentRoute, StaffRoute } from './lib/rbac';
+import { StudentLayout, AdminLayout, TrustLayout } from './layouts/PortalLayout';
+import { StudentRoute, StaffRoute, TrustRoute } from './lib/rbac';
 import { useAuth } from './lib/auth';
 
 import Home from './pages/public/Home';
@@ -29,6 +29,7 @@ import SProfile from './pages/student/Profile';
 import SAnnouncements from './pages/student/Announcements';
 import SSupport from './pages/student/Support';
 import SComingSoon from './pages/student/ComingSoon';
+import TrustDashboard from './pages/trust/Dashboard';
 
 import ADashboard from './pages/admin/Dashboard';
 import AManagedInExcel from './pages/admin/ManagedInExcel';
@@ -38,6 +39,7 @@ function LoginRouter() {
   if (loading) return <div className="min-h-screen grid place-items-center text-primary font-semibold">Loading…</div>;
   if (!profile) return <Login />;
   if (profile.role === 'admin' || profile.role === 'super_admin') return <Navigate to="/admin/dashboard" replace />;
+  if (profile.role === 'trust') return <Navigate to="/trust/dashboard" replace />;
   return <Navigate to="/student/dashboard" replace />;
 }
 
@@ -88,6 +90,13 @@ export default function App() {
         <Route path="certificates" element={<SComingSoon />} />
         <Route path="announcements" element={<SAnnouncements />} />
         <Route path="support" element={<SSupport />} />
+      </Route>
+
+      {/* ADMIN - staff (admin/super_admin) only; trainer access on specific routes */}
+      {/* TRUST PORTAL - trust members only */}
+      <Route path="/trust" element={<TrustRoute><TrustLayout /></TrustRoute>}>
+        <Route index element={<Navigate to="/trust/dashboard" replace />} />
+        <Route path="dashboard" element={<TrustDashboard />} />
       </Route>
 
       {/* ADMIN - staff (admin/super_admin) only; trainer access on specific routes */}

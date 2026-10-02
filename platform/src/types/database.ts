@@ -1,4 +1,4 @@
-export type Role = 'student' | 'trainer' | 'admin' | 'super_admin';
+export type Role = 'student' | 'trainer' | 'trust' | 'admin' | 'super_admin';
 
 export interface Profile {
   id: string; full_name: string; role: Role; mobile?: string | null;

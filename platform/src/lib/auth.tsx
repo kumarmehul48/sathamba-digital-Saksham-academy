@@ -7,6 +7,7 @@ interface StoredSession {
   name: string;
   batch?: string;
   status?: string;
+  designation?: string;
 }
 
 interface AuthCtx {
@@ -53,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       const d = await r.json();
       if (!r.ok || !d.ok) return { error: d.error || 'Login failed. Please try again.' };
-      const s: StoredSession = { role: d.role, name: d.name, batch: d.batch || '', status: d.status || '' };
+      const s: StoredSession = { role: d.role, name: d.name, batch: d.batch || '', status: d.status || '', designation: d.designation || '' };
       localStorage.setItem(KEY, JSON.stringify(s));
       setSession(s);
       return { error: null };

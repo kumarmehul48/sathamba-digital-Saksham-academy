@@ -26,14 +26,14 @@ export default function Login() {
       <div className="bg-white rounded-xl p-8 w-full max-w-sm shadow-xl">
         <div className="text-center mb-6">
           <img src="sdsa-badge.webp" alt="SDSA" className="w-14 h-14 mx-auto rounded-full mb-3 object-cover" />
-          <h1 className="text-lg font-extrabold text-primary">Student & Staff Login</h1>
+          <h1 className="text-lg font-extrabold text-primary">Student • Trust • Staff Login</h1>
           <p className="text-xs text-gray-500">Sathamba Digital Saksham Academy</p>
         </div>
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>
             <label className="label-sdsa">Mobile Number / Username</label>
-            <input required disabled={busy} className="input-sdsa" placeholder="Student: mobile no | Staff: username" value={id} onChange={(e) => setId(e.target.value)} />
+            <input required disabled={busy} className="input-sdsa" placeholder="Student: mobile no | Trust/Staff: username" value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
             <label className="label-sdsa">Password</label>
@@ -45,6 +45,7 @@ export default function Login() {
           <Link to="/forgot-password" className="text-primary hover:underline">Forgot password?</Link>
           <Link to="/apply" className="text-primary font-semibold hover:underline">Apply for admission →</Link>
         </div>
+        <p className="text-[10px] text-gray-400 text-center mt-2">Trust members: username & password milenge trust trustee se. Students: mobile + password.</p>
         <p className="text-[11px] text-gray-400 text-center mt-4">
           Password milne ke liye academy se sampark karein:{' '}
           <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="text-accent-dark underline">WhatsApp</a>

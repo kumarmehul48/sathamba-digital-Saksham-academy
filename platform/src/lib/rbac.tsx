@@ -23,3 +23,7 @@ export function StaffRoute({ children }: { children: ReactNode }) {
 export function StaffOrTrainerRoute({ children }: { children: ReactNode }) {
   return <RequireAuth roles={['admin', 'super_admin', 'trainer']}>{children}</RequireAuth>;
 }
+
+export function TrustRoute({ children }: { children: ReactNode }) {
+  return <RequireAuth roles={['trust']}>{children}</RequireAuth>;
+}

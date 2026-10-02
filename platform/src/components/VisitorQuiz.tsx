@@ -60,11 +60,24 @@ const QUESTIONS: Q[] = [
 ];
 
 const KEY = 'sdsa_visitor_quiz';
+const SEEN_KEY = 'sdsa_quiz_seen';
 const today = () => new Date().toISOString().slice(0, 10);
+
+/** Pick a question the visitor has NOT seen yet; reset once all are seen. */
+function nextQuestion(): Q {
+  let seen: number[] = [];
+  try { seen = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { seen = []; }
+  let candidates = QUESTIONS.map((_, i) => i).filter((i) => !seen.includes(i));
+  if (candidates.length === 0) { seen = []; candidates = QUESTIONS.map((_, i) => i); }
+  const pick = candidates[Math.floor(Math.random() * candidates.length)];
+  seen.push(pick);
+  try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch { /* ignore */ }
+  return QUESTIONS[pick];
+}
 
 export default function VisitorQuiz() {
   const [open, setOpen] = useState(false);
-  const [q] = useState<Q>(() => QUESTIONS[Math.floor(Date.now() / 86400000) % QUESTIONS.length]);
+  const [q] = useState<Q>(nextQuestion);
   const [picked, setPicked] = useState<number | null>(null);
 
   useEffect(() => {

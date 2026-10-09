@@ -55,7 +55,7 @@ export default function Login() {
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>
-            <label className="label-sdsa">Mobile Number / Username</label>
+            <label className="label-sdsa">Mobile / Email / Username</label>
             <input required disabled={busy} className="input-sdsa" placeholder="Mobile / Email / Username" value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
@@ -68,7 +68,7 @@ export default function Login() {
           <Link to="/forgot-password" className="text-primary hover:underline">Forgot password?</Link>
           <Link to="/apply" className="text-primary font-semibold hover:underline">Apply for admission →</Link>
         </div>
-        <p className="text-[10px] text-gray-400 text-center mt-2">Students: mobile number + password se login karein.</p>
+        <p className="text-[10px] text-gray-400 text-center mt-2">Students: mobile, email, username ya phone + password se login karein.</p>
         <p className="text-xs text-center mt-3 border-t border-gray-100 pt-3">
           Trust member ho? <Link to="/trust/login" className="text-accent-dark font-bold hover:underline">Trust Member Login →</Link>
         </p>

@@ -42,9 +42,8 @@ export function StudentLayout() {
 }
 
 const adminNav = [
-  { to: '/admin/dashboard', label: 'Dashboard', end: true },
-  { to: '/admin/logins', label: 'Logins', end: true },
-  { to: '/admin/trust-posts', label: 'Trust Posts & Coins', end: true },
+  { to: '/admin/dashboard', label: '🪙 Coin Console', end: true },
+  { to: '/admin/logins', label: '🔑 Logins', end: true },
 ];
 
 export function AdminLayout() {

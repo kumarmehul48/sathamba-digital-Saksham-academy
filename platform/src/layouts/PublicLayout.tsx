@@ -68,6 +68,7 @@ export default function PublicLayout() {
               <li><Link to="/campaign" className="hover:text-accent">Free Demo Class</Link></li>
               <li><Link to="/cyber-law" className="hover:text-accent">Cyber Law Course</Link></li>
               <li><Link to="/login" className="hover:text-accent">Student Login</Link></li>
+              <li><Link to="/trust/login" className="hover:text-accent">Trust Member Login</Link></li>
               <li><Link to="/verify-certificate" className="hover:text-accent">Verify Certificate</Link></li>
             </ul>
           </div>

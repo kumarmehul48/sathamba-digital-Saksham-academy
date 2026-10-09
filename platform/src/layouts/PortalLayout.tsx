@@ -89,7 +89,10 @@ export function TrustLayout() {
           <span className="font-extrabold">SDSA Trust <span className="text-accent">Portal</span></span>
         </Link>
         <nav className="flex-1 overflow-y-auto py-2">
-          <NavLink to="/trust/dashboard" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>Dashboard</NavLink>
+          <NavLink to="/trust/dashboard" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>📊 Dashboard</NavLink>
+          <NavLink to="/trust/posts" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>🤝 My Posts</NavLink>
+          <NavLink to="/trust/coins" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>🪙 My Coins</NavLink>
+          <NavLink to="/trust/profile" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>👤 My Profile</NavLink>
         </nav>
         <div className="p-4 border-t border-white/10">
           <p className="text-sm font-bold">{profile?.full_name}</p>
@@ -99,6 +102,9 @@ export function TrustLayout() {
       <div className="flex-1 min-w-0">
         <div className="md:hidden bg-primary text-white p-3 flex gap-2 overflow-x-auto text-sm">
           <NavLink to="/trust/dashboard" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>Dashboard</NavLink>
+          <NavLink to="/trust/posts" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Posts</NavLink>
+          <NavLink to="/trust/coins" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Coins</NavLink>
+          <NavLink to="/trust/profile" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Profile</NavLink>
           <button onClick={signOut} className="px-3 py-1.5 rounded-lg">Logout</button>
         </div>
         <div className="container-sdsa py-6"><Outlet /></div>

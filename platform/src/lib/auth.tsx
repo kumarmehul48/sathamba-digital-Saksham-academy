@@ -5,6 +5,7 @@ import { API_BASE } from '../config';
 interface StoredSession {
   role: Role;
   name: string;
+  username?: string;
   batch?: string;
   status?: string;
   designation?: string;
@@ -54,8 +55,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       const d = await r.json();
       if (!r.ok || !d.ok) return { error: d.error || 'Login failed. Please try again.' };
-      const s: StoredSession = { role: d.role, name: d.name, batch: d.batch || '', status: d.status || '', designation: d.designation || '' };
+      const s: StoredSession = { role: d.role, name: d.name, username: d.username || '', batch: d.batch || '', status: d.status || '', designation: d.designation || '' };
       localStorage.setItem(KEY, JSON.stringify(s));
+      // trust portal API calls re-verify the password (kept in sessionStorage only)
+      if (d.role === 'trust') { try { sessionStorage.setItem('sdsa_trust_pw', password); } catch {} }
+      else { try { sessionStorage.removeItem('sdsa_trust_pw'); } catch {} }
       setSession(s);
       return { error: null };
     } catch {

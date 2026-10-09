@@ -21,6 +21,7 @@ import Privacy from './pages/public/Privacy';
 import Terms from './pages/public/Terms';
 
 import Login from './pages/auth/Login';
+import TrustLogin from './pages/auth/TrustLogin';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
 
@@ -30,6 +31,9 @@ import SAnnouncements from './pages/student/Announcements';
 import SSupport from './pages/student/Support';
 import SComingSoon from './pages/student/ComingSoon';
 import TrustDashboard from './pages/trust/Dashboard';
+import TrustMyPosts from './pages/trust/MyPosts';
+import TrustMyCoins from './pages/trust/MyCoins';
+import TrustMyProfile from './pages/trust/MyProfile';
 
 import ADashboard from './pages/admin/Dashboard';
 import ALogins from './pages/admin/Logins';
@@ -66,6 +70,8 @@ export default function App() {
 
       {/* AUTH & ALIASES */}
       <Route path="/login" element={<LoginRouter />} />
+      <Route path="/trust/login" element={<TrustLogin />} />
+      <Route path="/trust/member/login" element={<TrustLogin />} />
       <Route path="/student/login" element={<LoginRouter />} />
       <Route path="/admin/login" element={<LoginRouter />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -95,6 +101,9 @@ export default function App() {
       <Route path="/trust" element={<TrustRoute><TrustLayout /></TrustRoute>}>
         <Route index element={<Navigate to="/trust/dashboard" replace />} />
         <Route path="dashboard" element={<TrustDashboard />} />
+        <Route path="posts" element={<TrustMyPosts />} />
+        <Route path="coins" element={<TrustMyCoins />} />
+        <Route path="profile" element={<TrustMyProfile />} />
       </Route>
 
       {/* ADMIN - staff (admin/super_admin) only; trainer access on specific routes */}

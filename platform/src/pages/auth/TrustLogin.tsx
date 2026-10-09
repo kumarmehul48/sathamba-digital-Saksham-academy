@@ -43,7 +43,7 @@ export default function TrustLogin() {
           <p className="text-xs text-gray-500">Shivansh Digital Sagacity &amp; Alleviation</p>
           <p className="text-[10px] text-gray-400 mt-1">Nurturing Wisdom, Sustaining Lives</p>
         </div>
-        {session && (
+        {session && session.role === 'trust' && (
           <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
             <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name} ({session.role})</p>
             <div className="flex gap-2 justify-center">

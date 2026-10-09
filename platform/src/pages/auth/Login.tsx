@@ -56,7 +56,7 @@ export default function Login() {
           {err && <Alert tone="error">{err}</Alert>}
           <div>
             <label className="label-sdsa">Mobile Number / Username</label>
-            <input required disabled={busy} className="input-sdsa" placeholder="Mobile number (student)" value={id} onChange={(e) => setId(e.target.value)} />
+            <input required disabled={busy} className="input-sdsa" placeholder="Mobile / Email / Username" value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
             <label className="label-sdsa">Password</label>

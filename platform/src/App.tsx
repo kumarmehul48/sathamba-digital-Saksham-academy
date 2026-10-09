@@ -37,6 +37,7 @@ import TrustMyProfile from './pages/trust/MyProfile';
 
 import ADashboard from './pages/admin/Dashboard';
 import ALogins from './pages/admin/Logins';
+import ATrustPosts from './pages/admin/TrustPosts';
 import AManagedInExcel from './pages/admin/ManagedInExcel';
 
 function LoginRouter() {
@@ -111,6 +112,7 @@ export default function App() {
         <Route index element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="dashboard" element={<ADashboard />} />
         <Route path="logins" element={<ALogins />} />
+        <Route path="trust-posts" element={<ATrustPosts />} />
         <Route path="students" element={<AManagedInExcel />} />
         <Route path="admissions" element={<AManagedInExcel />} />
         <Route path="batches" element={<AManagedInExcel />} />

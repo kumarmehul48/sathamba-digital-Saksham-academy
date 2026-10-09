@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../lib/auth';
 import { Button, Alert } from '../../components/ui';
 import { asset, WHATSAPP_URL } from '../../config';
 
+// TRUST LOGIN — sirf trust members + Trust Admin (sab authority) ke liye.
+// Student login ke liye /login alag page hai.
 export default function TrustLogin() {
   const { signIn, signOut, session } = useAuth();
   const nav = useNavigate();
@@ -46,9 +48,9 @@ export default function TrustLogin() {
         </div>
         {session && (session.role === 'trust' || session.role === 'admin') && (
           <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
-            <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name} ({session.role})</p>
+            <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name}{session.role === 'admin' ? ' (Trust Admin)' : ''}</p>
             <div className="flex gap-2 justify-center">
-              <button type="button" onClick={continueTo} className="text-xs bg-primary text-white font-bold px-3 py-1.5 rounded-lg">Continue to Trust Portal →</button>
+              <button type="button" onClick={continueTo} className="text-xs bg-primary text-white font-bold px-3 py-1.5 rounded-lg">Continue →</button>
               <button type="button" onClick={async () => { await signOut(); }} className="text-xs bg-white border border-gray-300 text-gray-600 font-bold px-3 py-1.5 rounded-lg">Logout</button>
             </div>
           </div>
@@ -56,7 +58,7 @@ export default function TrustLogin() {
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>
-            <label className="label-sdsa">Username</label>
+            <label className="label-sdsa">Username / Email / Phone</label>
             <input required disabled={busy} className="input-sdsa" placeholder="Username / Email / Phone" value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
@@ -69,9 +71,6 @@ export default function TrustLogin() {
         <p className="text-[11px] text-gray-400 text-center mt-3">
           Password milne ke liye sampark karein:{' '}
           <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="text-accent-dark underline">WhatsApp</a>
-        </p>
-        <p className="text-xs text-center mt-4 border-t border-gray-100 pt-3">
-          <Link to="/login" className="text-gray-500 hover:underline">← Student Login</Link>
         </p>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { asset, WHATSAPP_URL } from '../../config';
 
 // STUDENT LOGIN — sirf students ke liye. (Trust/Admin ke liye /trust/login alag hai.)
 export default function Login() {
-  const { signIn, signOut, session } = useAuth();
+  const { signIn } = useAuth();
   const nav = useNavigate();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
@@ -30,15 +30,6 @@ export default function Login() {
           <h1 className="text-lg font-extrabold text-primary">Student Login</h1>
           <p className="text-xs text-gray-500">Sathamba Digital Saksham Academy</p>
         </div>
-        {session?.role === 'student' && (
-          <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
-            <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name}</p>
-            <div className="flex gap-2 justify-center">
-              <button type="button" onClick={() => nav('/student/dashboard')} className="text-xs bg-primary text-white font-bold px-3 py-1.5 rounded-lg">Continue to Dashboard →</button>
-              <button type="button" onClick={async () => { await signOut(); }} className="text-xs bg-white border border-gray-300 text-gray-600 font-bold px-3 py-1.5 rounded-lg">Logout</button>
-            </div>
-          </div>
-        )}
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>

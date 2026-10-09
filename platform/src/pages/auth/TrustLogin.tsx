@@ -7,16 +7,12 @@ import { asset, WHATSAPP_URL } from '../../config';
 // TRUST LOGIN — sirf trust members + Trust Admin (sab authority) ke liye.
 // Student login ke liye /login alag page hai.
 export default function TrustLogin() {
-  const { signIn, signOut, session } = useAuth();
+  const { signIn, signOut } = useAuth();
   const nav = useNavigate();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
-
-  function continueTo() {
-    nav(session?.role === 'admin' ? '/admin/dashboard' : '/trust/dashboard');
-  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -46,15 +42,6 @@ export default function TrustLogin() {
           <p className="text-xs text-gray-500">Shivansh Digital Sagacity &amp; Alleviation</p>
           <p className="text-[10px] text-gray-400 mt-1">Nurturing Wisdom, Sustaining Lives</p>
         </div>
-        {session && (session.role === 'trust' || session.role === 'admin') && (
-          <div className="mb-4 p-3 rounded-lg bg-accent/15 border border-accent/40 text-center">
-            <p className="text-xs font-bold text-primary mb-2">👤 Already logged in as {session.name}{session.role === 'admin' ? ' (Trust Admin)' : ''}</p>
-            <div className="flex gap-2 justify-center">
-              <button type="button" onClick={continueTo} className="text-xs bg-primary text-white font-bold px-3 py-1.5 rounded-lg">Continue →</button>
-              <button type="button" onClick={async () => { await signOut(); }} className="text-xs bg-white border border-gray-300 text-gray-600 font-bold px-3 py-1.5 rounded-lg">Logout</button>
-            </div>
-          </div>
-        )}
         <form onSubmit={submit} className="space-y-3">
           {err && <Alert tone="error">{err}</Alert>}
           <div>

@@ -32,6 +32,11 @@ export default function TrustPosts() {
   // per-post inputs
   const [coinInput, setCoinInput] = useState<Record<number, string>>({});
   const [noteInput, setNoteInput] = useState<Record<number, string>>({});
+  // direct transfer state
+  const [toUser, setToUser] = useState('');
+  const [tCoins, setTCoins] = useState('');
+  const [tReason, setTReason] = useState('');
+  const [tBusy, setTBusy] = useState(false);
 
   const adminUser = session?.username || '';
   const adminPass = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sdsa_admin_pw') || '' : '';
@@ -70,6 +75,23 @@ export default function TrustPosts() {
     setBusyRow(0);
   }
 
+  async function transfer() {
+    setErr(''); setMsg(''); setTBusy(true);
+    try {
+      const r = await fetch(`${API_BASE}/sdsaAdminCoins`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'grant', adminUser, adminPass,
+          to: toUser, coins: Number(tCoins || 0), reason: tReason || 'Direct transfer',
+        }),
+      });
+      const d = await r.json();
+      if (!d.ok) setErr(d.error || 'Transfer failed.');
+      else { setMsg(d.message); setToUser(''); setTCoins(''); setTReason(''); load(); }
+    } catch { setErr('Network problem. Dobara try karo.'); }
+    setTBusy(false);
+  }
+
   if (!adminUser || !adminPass) {
     return (
       <div className="max-w-md mx-auto bg-white rounded-xl p-6 shadow">
@@ -104,6 +126,38 @@ export default function TrustPosts() {
           </div>
         ))}
         {members.length === 0 && <p className="text-sm text-gray-500">Abhi koi member nahi.</p>}
+      </div>
+
+      {/* Direct coin transfer */}
+      <div className="bg-white rounded-xl p-4 shadow border-l-4 border-accent">
+        <h3 className="font-bold text-primary mb-1">💸 Direct Coin Transfer</h3>
+        <p className="text-xs text-gray-500 mb-3">Bina post ke seedha kisi member ko coins do — ledger me entry automatic.</p>
+        <div className="flex flex-wrap gap-2 items-center">
+          <select
+            className="input-sdsa w-48 !py-2"
+            value={toUser}
+            onChange={(e) => setToUser(e.target.value)}
+          >
+            <option value="">Member chuno…</option>
+            {members.map((m) => (
+              <option key={m.username} value={m.username}>{m.name} (@{m.username}) — {m.balance} coins</option>
+            ))}
+          </select>
+          <input
+            type="number" min={1} max={500} placeholder="Coins"
+            className="input-sdsa w-24 !py-2" value={tCoins}
+            onChange={(e) => setTCoins(e.target.value)}
+          />
+          <input
+            placeholder="Reason (e.g. Welcome bonus)"
+            className="input-sdsa w-52 !py-2" value={tReason}
+            onChange={(e) => setTReason(e.target.value)}
+          />
+          <Button type="button" disabled={tBusy || !toUser || !tCoins} onClick={transfer}
+            className="!py-2 !px-5">
+            {tBusy ? '…' : '💸 Transfer Coins'}
+          </Button>
+        </div>
       </div>
 
       {/* Pending posts */}

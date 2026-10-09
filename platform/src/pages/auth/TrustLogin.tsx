@@ -56,7 +56,7 @@ export default function TrustLogin() {
           {err && <Alert tone="error">{err}</Alert>}
           <div>
             <label className="label-sdsa">Username</label>
-            <input required disabled={busy} className="input-sdsa" placeholder="Username (trust member)" value={id} onChange={(e) => setId(e.target.value)} />
+            <input required disabled={busy} className="input-sdsa" placeholder="Username / Email / Phone" value={id} onChange={(e) => setId(e.target.value)} />
           </div>
           <div>
             <label className="label-sdsa">Password</label>

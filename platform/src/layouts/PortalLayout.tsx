@@ -53,8 +53,8 @@ export function AdminLayout() {
     <div className="min-h-screen bg-surface flex">
       <aside className="w-60 shrink-0 hidden lg:flex flex-col bg-primary-dark text-white">
         <Link to="/admin/dashboard" className="p-4 border-b border-white/10 flex items-center gap-2">
-          <img src={asset("sdsa-badge.webp")} alt="SDSA Academy" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
-          <span className="font-extrabold">SDSA <span className="text-accent">Admin</span></span>
+          <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
+          <span className="font-extrabold">SDSA Trust <span className="text-accent">Admin</span></span>
         </Link>
         <nav className="flex-1 overflow-y-auto py-2 text-[13px]">
           {adminNav.map((n) => (

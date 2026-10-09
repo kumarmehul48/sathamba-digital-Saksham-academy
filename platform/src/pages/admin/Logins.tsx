@@ -3,8 +3,8 @@ import { Card, Button, Alert } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
 import { API_BASE } from '../../config';
 
-interface SRec { name: string; mobile: string; batch: string; status: string }
-interface TRec { username: string; name: string; designation: string }
+interface SRec { name: string; mobile: string; batch: string; status: string; email?: string; phone?: string }
+interface TRec { username: string; name: string; designation: string; email?: string; phone?: string }
 
 export default function Logins() {
   const { session } = useAuth();
@@ -16,10 +16,10 @@ export default function Logins() {
 
   // student form
   const [sName, setSName] = useState(''); const [sMob, setSMob] = useState('');
-  const [sPw, setSPw] = useState(''); const [sBatch, setSBatch] = useState('');
+  const [sPw, setSPw] = useState(''); const [sBatch, setSBatch] = useState(''); const [sEmail, setSEmail] = useState(''); const [sPhone, setSPhone] = useState('');
   // trust form
   const [tUser, setTUser] = useState(''); const [tPw, setTPw] = useState('');
-  const [tName, setTName] = useState(''); const [tDesig, setTDesig] = useState('');
+  const [tName, setTName] = useState(''); const [tDesig, setTDesig] = useState(''); const [tEmail, setTEmail] = useState(''); const [tPhone, setTPhone] = useState('');
 
   async function call(action: string, payload: Record<string, unknown> = {}) {
     setBusy(true); setMsg(null);
@@ -81,8 +81,10 @@ export default function Logins() {
                     <div className="min-w-[180px]">
                       <p className="text-sm font-bold text-gray-800">{s.name}</p>
                       <p className="text-xs text-gray-500">{s.mobile} · {s.batch || 'No batch'} · {s.status || 'Active'}</p>
+                      {(s.email || s.phone) && <p className="text-[11px] text-gray-400">{s.email}{s.email && s.phone ? ' · ' : ''}{s.phone}</p>}
                     </div>
                     <div className="flex gap-2">
+                      <EditEP existing={`${s.email || ''}|${s.phone || ''}`} onSave={(em, ph) => act('update_student', { mobile: s.mobile, email: em, phone: ph }, `Email/Phone updated for ${s.name}`)} />
                       <ChangePw onSet={(pw) => act('update_student', { mobile: s.mobile, password: pw }, `Password updated for ${s.name}`)} />
                       <button disabled={busy} onClick={() => { if (confirm(`Remove login for ${s.name}?`)) act('delete_student', { mobile: s.mobile }, `Login removed for ${s.name}`); }}
                         className="text-xs bg-danger/10 text-danger font-bold px-3 py-1.5 rounded-lg hover:bg-danger/20">Remove</button>
@@ -97,10 +99,12 @@ export default function Logins() {
               <input className="input-sdsa" placeholder="Mobile number" value={sMob} onChange={(e) => setSMob(e.target.value)} />
               <input className="input-sdsa" type="password" placeholder="Password" value={sPw} onChange={(e) => setSPw(e.target.value)} />
               <input className="input-sdsa" placeholder="Batch (optional)" value={sBatch} onChange={(e) => setSBatch(e.target.value)} />
+              <input className="input-sdsa" placeholder="Email (optional — login ke liye)" value={sEmail} onChange={(e) => setSEmail(e.target.value)} />
+              <input className="input-sdsa" placeholder="Phone (optional — login ke liye)" value={sPhone} onChange={(e) => setSPhone(e.target.value)} />
             </div>
             <Button className="mt-2" disabled={busy || !sName || !sMob || !sPw}
-              onClick={() => act('create_student', { name: sName, mobile: sMob, password: sPw, batch: sBatch, status: 'Active' }, `Login created for ${sName}`,
-                () => { setSName(''); setSMob(''); setSPw(''); setSBatch(''); })}>
+              onClick={() => act('create_student', { name: sName, mobile: sMob, password: sPw, batch: sBatch, status: 'Active', email: sEmail, phone: sPhone }, `Login created for ${sName}`,
+                () => { setSName(''); setSMob(''); setSPw(''); setSBatch(''); setSEmail(''); setSPhone(''); })}>
               Create Student Login
             </Button>
           </Card>
@@ -115,8 +119,10 @@ export default function Logins() {
                     <div className="min-w-[180px]">
                       <p className="text-sm font-bold text-gray-800">{t.name}</p>
                       <p className="text-xs text-gray-500">@{t.username} · {t.designation || 'Trust Member'}</p>
+                      {(t.email || t.phone) && <p className="text-[11px] text-gray-400">{t.email}{t.email && t.phone ? ' · ' : ''}{t.phone}</p>}
                     </div>
                     <div className="flex gap-2">
+                      <EditEP existing={`${t.email || ''}|${t.phone || ''}`} onSave={(em, ph) => act('update_trust', { username: t.username, email: em, phone: ph }, `Email/Phone updated for ${t.name}`)} />
                       <ChangePw onSet={(pw) => act('update_trust', { username: t.username, password: pw }, `Password updated for ${t.name}`)} />
                       <button disabled={busy} onClick={() => { if (confirm(`Remove login for ${t.name}?`)) act('delete_trust', { username: t.username }, `Login removed for ${t.name}`); }}
                         className="text-xs bg-danger/10 text-danger font-bold px-3 py-1.5 rounded-lg hover:bg-danger/20">Remove</button>
@@ -131,16 +137,36 @@ export default function Logins() {
               <input className="input-sdsa" type="password" placeholder="Password" value={tPw} onChange={(e) => setTPw(e.target.value)} />
               <input className="input-sdsa" placeholder="Full name" value={tName} onChange={(e) => setTName(e.target.value)} />
               <input className="input-sdsa" placeholder="Designation (e.g. Trustee)" value={tDesig} onChange={(e) => setTDesig(e.target.value)} />
+              <input className="input-sdsa" placeholder="Email (optional — login ke liye)" value={tEmail} onChange={(e) => setTEmail(e.target.value)} />
+              <input className="input-sdsa" placeholder="Phone (optional — login ke liye)" value={tPhone} onChange={(e) => setTPhone(e.target.value)} />
             </div>
             <Button className="mt-2" disabled={busy || !tUser || !tPw || !tName}
-              onClick={() => act('create_trust', { username: tUser, password: tPw, name: tName, designation: tDesig }, `Trust login created for ${tName}`,
-                () => { setTUser(''); setTPw(''); setTName(''); setTDesig(''); })}>
+              onClick={() => act('create_trust', { username: tUser, password: tPw, name: tName, designation: tDesig, email: tEmail, phone: tPhone }, `Trust login created for ${tName}`,
+                () => { setTUser(''); setTPw(''); setTName(''); setTDesig(''); setTEmail(''); setTPhone(''); })}>
               Create Trust Login
             </Button>
           </Card>
         </>
       )}
     </div>
+  );
+}
+
+function EditEP({ existing, onSave }: { existing: string; onSave: (email: string, phone: string) => void }) {
+  const [editing, setEditing] = useState(false);
+  const [em, setEm] = useState('');
+  const [ph, setPh] = useState('');
+  if (!editing) return (
+    <button onClick={() => { const [e, p] = existing.split('|'); setEm(e || ''); setPh(p || ''); setEditing(true); }}
+      className="text-xs bg-primary/10 text-primary font-bold px-3 py-1.5 rounded-lg hover:bg-primary/20">Email/Phone</button>
+  );
+  return (
+    <span className="flex gap-1">
+      <input autoFocus className="input-sdsa !py-1 !text-xs w-32" placeholder="Email" value={em} onChange={(e) => setEm(e.target.value)} />
+      <input className="input-sdsa !py-1 !text-xs w-28" placeholder="Phone" value={ph} onChange={(e) => setPh(e.target.value)} />
+      <button onClick={() => { onSave(em, ph); setEditing(false); }} className="text-xs bg-success/10 text-success font-bold px-2.5 py-1.5 rounded-lg hover:bg-success/20">Save</button>
+      <button onClick={() => setEditing(false)} className="text-xs bg-gray-100 text-gray-500 font-bold px-2.5 py-1.5 rounded-lg">✕</button>
+    </span>
   );
 }
 

@@ -21,7 +21,7 @@ export default function Login() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setErr(''); setBusy(true);
-    const { error } = await signIn(id, pw);
+    const { error } = await signIn(id, pw, 'student');
     setBusy(false);
     if (error) { setErr(error); return; }
     // role ke hisaab se sahi dashboard pe bhejo

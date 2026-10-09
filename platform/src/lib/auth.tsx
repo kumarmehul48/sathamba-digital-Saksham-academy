@@ -18,7 +18,7 @@ interface AuthCtx {
   isTrainer: boolean;
   isStaff: boolean;
   studentRecordId: string | null;
-  signIn: (identifier: string, password: string) => Promise<{ error: string | null }>;
+  signIn: (identifier: string, password: string, page?: 'student' | 'trust') => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   resetPassword: (identifier: string) => Promise<{ error: string | null }>;
   session: StoredSession | null;
@@ -46,12 +46,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ? ({ id: 'sheet', full_name: session.name, role: session.role } as Profile)
     : null;
 
-  async function signIn(identifier: string, password: string): Promise<{ error: string | null }> {
+  async function signIn(identifier: string, password: string, page?: 'student' | 'trust'): Promise<{ error: string | null }> {
     try {
       const r = await fetch(`${API_BASE}/sdsaLogin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: identifier.trim(), mobile: identifier.trim(), password }),
+        body: JSON.stringify({ username: identifier.trim(), mobile: identifier.trim(), password, page }),
       });
       const d = await r.json();
       if (!r.ok || !d.ok) return { error: d.error || 'Login failed. Please try again.' };

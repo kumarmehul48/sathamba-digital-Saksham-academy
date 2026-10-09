@@ -19,7 +19,7 @@ export default function TrustLogin() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setErr(''); setBusy(true);
-    const { error } = await signIn(id, pw);
+    const { error } = await signIn(id, pw, 'trust');
     setBusy(false);
     if (error) { setErr(error); return; }
     try {

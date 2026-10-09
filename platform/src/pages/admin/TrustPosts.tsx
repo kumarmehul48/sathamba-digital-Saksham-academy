@@ -18,7 +18,7 @@ interface Post {
   description: string; category: string; images: string; status: string;
   coins: string; adminNote: string; social: string;
 }
-interface Member { username: string; name: string; balance: number }
+interface Member { username: string; name: string; email?: string; phone?: string; balance: number }
 
 export default function TrustPosts() {
   const { session } = useAuth();
@@ -131,18 +131,22 @@ export default function TrustPosts() {
       {/* Direct coin transfer */}
       <div className="bg-white rounded-xl p-4 shadow border-l-4 border-accent">
         <h3 className="font-bold text-primary mb-1">💸 Direct Coin Transfer</h3>
-        <p className="text-xs text-gray-500 mb-3">Bina post ke seedha kisi member ko coins do — ledger me entry automatic.</p>
+        <p className="text-xs text-gray-500 mb-3">Bina post ke seedha coins do — member ka username, email ya phone likho (list se bhi chun sakte ho). Ledger me entry automatic.</p>
         <div className="flex flex-wrap gap-2 items-center">
-          <select
+          <input
+            list="member-list"
             className="input-sdsa w-48 !py-2"
+            placeholder="Username / Email / Phone"
             value={toUser}
             onChange={(e) => setToUser(e.target.value)}
-          >
-            <option value="">Member chuno…</option>
+          />
+          <datalist id="member-list">
             {members.map((m) => (
-              <option key={m.username} value={m.username}>{m.name} (@{m.username}) — {m.balance} coins</option>
+              <option key={m.username} value={m.username}>
+                {m.name} (@{m.username}){m.phone ? ` · ${m.phone}` : ''} — {m.balance} coins
+              </option>
             ))}
-          </select>
+          </datalist>
           <input
             type="number" min={1} max={500} placeholder="Coins"
             className="input-sdsa w-24 !py-2" value={tCoins}

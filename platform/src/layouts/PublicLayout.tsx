@@ -47,7 +47,7 @@ export default function PublicLayout() {
             <p className="text-accent text-xs mb-3 font-semibold">Learn • Practice • Apply • Grow | શીખીએ • પ્રેક્ટિસ કરીએ • આગળ વધીએ</p>
             <div className="border-t border-white/10 pt-3 mt-3">
               <div className="flex items-center gap-2">
-                <img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-8 h-8 rounded-full object-cover" />
+                <Link to="/trust/login" title="Trust Member Login"><img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-8 h-8 rounded-full object-cover hover:scale-110 transition-transform" /></Link>
                 <div>
                   <p className="text-xs font-bold text-accent-light">Managing Trust:</p>
                   <p className="font-bold text-white text-sm">Shivansh Digital Sagacity & Alleviation</p>

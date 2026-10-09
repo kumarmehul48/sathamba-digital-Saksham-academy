@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Badge } from '../../components/ui';
 import { asset } from '../../config';
 
@@ -14,7 +15,7 @@ export default function About() {
         {/* MANAGING TRUST DEDICATED SECTION */}
         <div className="card-sdsa p-8 bg-primary-50 border-l-8 border-l-accent-dark">
           <div className="flex items-center gap-4">
-            <img src={asset("sdsa-trust-logo.webp")} alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent" />
+            <Link to="/trust/login" title="Trust Member Login"><img src={asset("sdsa-trust-logo.webp")} alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent hover:scale-105 transition-transform" /></Link>
             <div>
               <Badge tone="accent">Managing Trust</Badge>
               <h2 className="text-2xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>

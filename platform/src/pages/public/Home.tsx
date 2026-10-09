@@ -33,7 +33,7 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-gray-200 mb-4 font-semibold text-sm sm:text-base">Learn • Practice • Apply • Grow</p>
           <div className="inline-block bg-white/10 backdrop-blur border border-accent/40 rounded-xl px-4 py-2 mb-6">
             <p className="text-xs text-accent-light font-medium">Managed & Operated by</p>
-            <p className="text-sm font-extrabold text-white flex items-center gap-2 justify-center"><img src={asset("sdsa-trust-logo.webp")} alt="trust" className="w-6 h-6 rounded-full inline-block" />Shivansh Digital Sagacity & Alleviation</p>
+            <Link to="/trust/login" title="Trust Member Login" className="text-sm font-extrabold text-white flex items-center gap-2 justify-center hover:text-accent-light transition-colors"><img src={asset("sdsa-trust-logo.webp")} alt="trust" className="w-6 h-6 rounded-full inline-block" />Shivansh Digital Sagacity & Alleviation</Link>
             <p className="text-xs text-accent italic">Nurturing Wisdom, Sustaining Lives</p>
           </div>
           <p className="max-w-2xl mx-auto text-gray-300 mb-8 text-sm sm:text-base">In the spirit of India's Digital India Mission and the digital-literacy goals of NEP 2020, SDSA brings a practical, hands-on 26-week digital skills journey to Sathamba, Aravalli district, Gujarat - from computer fundamentals to practical AI skills, step by step.</p>
@@ -67,7 +67,7 @@ export default function Home() {
       <section className="section-pad bg-surface border-y border-gray-200">
         <div className="container-sdsa text-center max-w-3xl mx-auto">
           <div className="flex items-center gap-4">
-            <img src={asset("sdsa-trust-logo.webp")} alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent" />
+            <Link to="/trust/login" title="Trust Member Login"><img src={asset("sdsa-trust-logo.webp")} alt="Shivansh Digital Sagacity & Alleviation" className="w-20 h-20 rounded-full object-cover border-2 border-accent hover:scale-105 transition-transform" /></Link>
             <div>
               <Badge tone="accent">Managing Trust</Badge>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mt-2 mb-1">Shivansh Digital Sagacity & Alleviation</h2>

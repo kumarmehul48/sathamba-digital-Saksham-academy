@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Card, Button, Alert } from '../../components/ui';
 import { asset,  API_BASE } from '../../config';
@@ -68,7 +69,7 @@ export default function Contact() {
           </Card>
           <Card className="bg-primary-50">
             <div className="flex items-center gap-3">
-              <img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-14 h-14 rounded-full object-cover" />
+              <Link to="/trust/login" title="Trust Member Login"><img src={asset("sdsa-trust-logo.webp")} alt="Trust logo" className="w-14 h-14 rounded-full object-cover hover:scale-105 transition-transform" /></Link>
               <div>
                 <h3 className="font-bold text-primary">Managing Trust</h3>
                 <p className="text-gray-800 text-sm font-semibold">Shivansh Digital Sagacity & Alleviation</p>

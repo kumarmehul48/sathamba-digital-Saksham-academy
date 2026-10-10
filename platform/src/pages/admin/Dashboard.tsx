@@ -408,7 +408,7 @@ export default function AdminDashboard() {
         )}
         {ledger.map((l) => (
           <div key={`${l.row}-${l.date}`} className="bg-white rounded-xl p-3 shadow mb-2 flex items-center gap-3">
-            <span className="text-sm font-extrabold text-accent-dark whitespace-nowrap">+{l.coins}</span>
+            <span className={`text-sm font-extrabold whitespace-nowrap ${l.coins < 0 ? 'text-red-600' : 'text-accent-dark'}`}>{l.coins < 0 ? l.coins : `+${l.coins}`}</span>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-primary truncate">{l.name || l.username} <span className="font-normal text-xs text-gray-400">@{l.username}</span></p>
               <p className="text-xs text-gray-500 truncate">{l.reason}{l.note ? ` · 📝 ${l.note}` : ''}</p>

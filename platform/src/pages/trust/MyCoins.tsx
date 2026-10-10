@@ -149,7 +149,7 @@ export default function MyCoins() {
                   <tr key={i} className="border-t border-gray-100">
                     <td className="px-4 py-2 text-gray-500 whitespace-nowrap">{h.date}</td>
                     <td className="px-4 py-2">{h.reason}{h.note ? <span className="text-gray-400 text-xs"> · {h.note}</span> : ''}</td>
-                    <td className="px-4 py-2 font-bold text-primary">+{h.coins}</td>
+                    <td className={`px-4 py-2 font-bold ${h.coins < 0 ? 'text-red-600' : 'text-primary'}`}>{h.coins < 0 ? h.coins : `+${h.coins}`}</td>
                     <td className="px-4 py-2 text-gray-500">{h.awardedBy || 'Admin'}</td>
                   </tr>
                 ))}

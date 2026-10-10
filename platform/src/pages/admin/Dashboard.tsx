@@ -27,7 +27,10 @@ interface LedgerEntry {
   row: number; date: string; username: string; name: string;
   reason: string; coins: number; awardedBy: string; note: string;
 }
-interface Totals { totalCoinsIssued: number; totalTransfers: number; members: number; pendingPosts: number }
+interface Totals { totalCoinsIssued: number; totalTransfers: number; members: number; pendingPosts: number; pendingRegistrations?: number; pendingKyc?: number; pendingTransferRequests?: number }
+interface Reg { row: number; date: string; name: string; mobile: string; email: string; reason: string; status: string; note: string; approvedUsername: string }
+interface Kyc { row: number; date: string; username: string; name: string; idType: string; idNumber: string; photo: string; status: string; note: string }
+interface TReq { row: number; date: string; from: string; to: string; coins: number; reason: string; status: string; note: string }
 
 export default function AdminDashboard() {
   const { session } = useAuth();
@@ -48,6 +51,18 @@ export default function AdminDashboard() {
   const [tCoins, setTCoins] = useState('');
   const [tReason, setTReason] = useState('');
   const [tBusy, setTBusy] = useState(false);
+  const [registrations, setRegistrations] = useState<Reg[]>([]);
+  const [kycList, setKycList] = useState<Kyc[]>([]);
+  const [transferRequests, setTransferRequests] = useState<TReq[]>([]);
+  // add member form
+  const [mUser, setMUser] = useState(''); const [mPass, setMPass] = useState('');
+  const [mName, setMName] = useState(''); const [mEmail, setMEmail] = useState(''); const [mPhone, setMPhone] = useState('');
+  const [mBusy, setMBusy] = useState(false);
+  // per-reg approve inputs
+  const [regCreds, setRegCreds] = useState<Record<number, { u: string; p: string }>>({});
+  // per-item notes
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [busyId, setBusyId] = useState('');
 
   const adminUser = session?.username || '';
   const adminPass = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sdsa_admin_pw') || '' : '';
@@ -66,12 +81,30 @@ export default function AdminDashboard() {
         setMembers(d.members || []);
         setLedger(d.ledger || []);
         setTotals(d.totals || null);
+        setRegistrations(d.registrations || []);
+        setKycList(d.kyc || []);
+        setTransferRequests(d.transferRequests || []);
       }
     } catch { setErr('Network problem. Dobara try karo.'); }
     setLoading(false);
   }
 
   useEffect(() => { if (adminUser && adminPass) load(); else setLoading(false); }, []);
+
+  // generic action: regApprove/regReject/kycApprove/kycReject/transferApprove/transferReject/addMember
+  async function adminAction(id: string, action: string, payload: Record<string, unknown> = {}) {
+    setErr(''); setMsg(''); setBusyId(id);
+    try {
+      const r = await fetch(`${API_BASE}/sdsaAdminCoins`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, adminUser, adminPass, ...payload }),
+      });
+      const d = await r.json();
+      if (!d.ok) setErr(d.error || 'Action failed.');
+      else { setMsg(d.message); load(); }
+    } catch { setErr('Network problem. Dobara try karo.'); }
+    setBusyId('');
+  }
 
   async function act(row: number, action: 'approve' | 'reject', post: Post) {
     setErr(''); setMsg(''); setBusyRow(row);
@@ -183,6 +216,118 @@ export default function AdminDashboard() {
             {tBusy ? '…' : '💸 Transfer Coins'}
           </Button>
         </div>
+      </div>
+
+      {/* ADD MEMBER — seedha trust member login banao */}
+      <div className="bg-white rounded-xl p-4 shadow border-l-4 border-green-600">
+        <h3 className="font-bold text-primary mb-1">➕ Add Trust Member (Direct)</h3>
+        <p className="text-xs text-gray-500 mb-3">Seedha member banao — username/password set karo, wo /trust/login se login kar payega.</p>
+        <div className="flex flex-wrap gap-2 items-center">
+          <input className="input-sdsa w-36 !py-2" placeholder="Username" value={mUser} onChange={(e) => setMUser(e.target.value)} />
+          <input className="input-sdsa w-32 !py-2" placeholder="Password" value={mPass} onChange={(e) => setMPass(e.target.value)} />
+          <input className="input-sdsa w-36 !py-2" placeholder="Full name" value={mName} onChange={(e) => setMName(e.target.value)} />
+          <input className="input-sdsa w-48 !py-2" placeholder="Email (optional)" value={mEmail} onChange={(e) => setMEmail(e.target.value)} />
+          <input className="input-sdsa w-36 !py-2" placeholder="Phone (optional)" value={mPhone} onChange={(e) => setMPhone(e.target.value)} />
+          <Button type="button" disabled={mBusy || !mUser || !mPass || !mName}
+            onClick={() => { setMBusy(true); adminAction('addMember', 'addMember', { username: mUser, password: mPass, name: mName, email: mEmail, phone: mPhone }).then(() => setMBusy(false)); setMUser(''); setMPass(''); setMName(''); setMEmail(''); setMPhone(''); }}
+            className="!py-2 !px-4 bg-green-600 hover:bg-green-700">
+            {mBusy ? '…' : '➕ Add Member'}
+          </Button>
+        </div>
+      </div>
+
+      {/* REGISTRATION REQUESTS — approve karke login banao */}
+      <div>
+        <h3 className="font-bold text-primary mb-2">📥 Registration Requests ({registrations.filter((r) => r.status === 'Pending').length} pending)</h3>
+        {registrations.length === 0 && (
+          <div className="bg-white rounded-xl p-5 shadow text-center text-sm text-gray-500">Abhi koi registration request nahi. Trust login page se request aayegi.</div>
+        )}
+        {registrations.map((r) => (
+          <div key={r.row} className={`bg-white rounded-xl p-4 shadow mb-3 border-l-4 ${r.status === 'Pending' ? 'border-yellow-400' : r.status === 'Approved' ? 'border-green-600' : 'border-red-500'}`}>
+            <p className="font-bold text-primary">{r.name} {r.status !== 'Pending' && <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ml-1 ${r.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{r.status === 'Approved' ? `✅ Approved @${r.approvedUsername || ''}` : '❌ Rejected'}</span>}</p>
+            <p className="text-xs text-gray-400">{r.date} · 📱 {r.mobile} · ✉️ {r.email}</p>
+            <p className="text-sm text-gray-600 mt-1">"{r.reason}"</p>
+            {r.status === 'Pending' ? (
+              <div className="flex flex-wrap items-center gap-2 mt-3">
+                <input className="input-sdsa w-32 !py-1.5" placeholder="Username" value={regCreds[r.row]?.u || ''} onChange={(e) => setRegCreds((c) => ({ ...c, [r.row]: { u: e.target.value, p: c[r.row]?.p || '' } }))} />
+                <input className="input-sdsa w-32 !py-1.5" placeholder="Password" value={regCreds[r.row]?.p || ''} onChange={(e) => setRegCreds((c) => ({ ...c, [r.row]: { u: c[r.row]?.u || '', p: e.target.value } }))} />
+                <Button type="button" disabled={busyId === `reg${r.row}` || !regCreds[r.row]?.u || !regCreds[r.row]?.p}
+                  onClick={() => adminAction(`reg${r.row}`, 'regApprove', { row: r.row, username: regCreds[r.row].u, password: regCreds[r.row].p })}
+                  className="!py-1.5 !px-4 bg-green-600 hover:bg-green-700">
+                  {busyId === `reg${r.row}` ? '…' : '✅ Approve + Login Banao'}
+                </Button>
+                <Button type="button" disabled={busyId === `reg${r.row}`}
+                  onClick={() => adminAction(`reg${r.row}`, 'regReject', { row: r.row, note: notes[`reg${r.row}`] || '' })}
+                  className="!py-1.5 !px-4 bg-red-600 hover:bg-red-700">
+                  ❌ Reject
+                </Button>
+                <input className="input-sdsa w-44 !py-1.5" placeholder="Reject note (optional)" value={notes[`reg${r.row}`] || ''} onChange={(e) => setNotes((n) => ({ ...n, [`reg${r.row}`]: e.target.value }))} />
+              </div>
+            ) : r.note && <p className="text-xs text-gray-400 mt-2">📝 {r.note}</p>}
+          </div>
+        ))}
+      </div>
+
+      {/* KYC VERIFICATION */}
+      <div>
+        <h3 className="font-bold text-primary mb-2">🆔 KYC Verification ({kycList.filter((k) => k.status === 'Pending').length} pending)</h3>
+        {kycList.length === 0 && (
+          <div className="bg-white rounded-xl p-5 shadow text-center text-sm text-gray-500">Abhi koi KYC nahi. Members portal ke KYC page se submit karenge.</div>
+        )}
+        {kycList.map((k) => (
+          <div key={k.row} className={`bg-white rounded-xl p-4 shadow mb-3 border-l-4 ${k.status === 'Pending' ? 'border-yellow-400' : k.status === 'Verified' ? 'border-green-600' : 'border-red-500'}`}>
+            <div className="flex gap-4">
+              {k.photo ? (
+                <a href={k.photo} target="_blank" rel="noreferrer">
+                  <img src={`https://drive.google.com/thumbnail?id=${(k.photo.match(/[-\w]{25,}/) || [''])[0]}&sz=w400`} alt="ID" className="w-28 h-28 rounded-lg object-cover border" />
+                </a>
+              ) : <div className="w-28 h-28 rounded-lg bg-gray-100 grid place-items-center text-gray-400 text-xs">No ID</div>}
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-primary">{k.name} <span className="font-normal text-xs text-gray-400">@{k.username}</span> {k.status !== 'Pending' && <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ml-1 ${k.status === 'Verified' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{k.status === 'Verified' ? '✅ Verified' : '❌ Rejected'}</span>}</p>
+                <p className="text-xs text-gray-400">{k.date} · {k.idType} · No. {k.idNumber}</p>
+                {k.status === 'Pending' && (
+                  <div className="flex flex-wrap items-center gap-2 mt-3">
+                    <Button type="button" disabled={busyId === `kyc${k.row}`} onClick={() => adminAction(`kyc${k.row}`, 'kycApprove', { row: k.row })} className="!py-1.5 !px-4 bg-green-600 hover:bg-green-700">
+                      {busyId === `kyc${k.row}` ? '…' : '✅ Verify'}
+                    </Button>
+                    <Button type="button" disabled={busyId === `kyc${k.row}`} onClick={() => adminAction(`kyc${k.row}`, 'kycReject', { row: k.row, note: notes[`kyc${k.row}`] || '' })} className="!py-1.5 !px-4 bg-red-600 hover:bg-red-700">
+                      ❌ Reject
+                    </Button>
+                    <input className="input-sdsa w-44 !py-1.5" placeholder="Note (optional)" value={notes[`kyc${k.row}`] || ''} onChange={(e) => setNotes((n) => ({ ...n, [`kyc${k.row}`]: e.target.value }))} />
+                  </div>
+                )}
+                {k.status !== 'Pending' && k.note && <p className="text-xs text-gray-400 mt-2">📝 {k.note}</p>}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* TRANSFER REQUESTS — member to member internal */}
+      <div>
+        <h3 className="font-bold text-primary mb-2">🔁 Transfer Requests ({transferRequests.filter((t) => t.status === 'Pending').length} pending)</h3>
+        <p className="text-xs text-gray-500 mb-2">Members ek dusre ko coins bhejne ki request bhejte hain — approve karne par sender ke wallet se receiver ke wallet me coins chale jayenge.</p>
+        {transferRequests.length === 0 && (
+          <div className="bg-white rounded-xl p-5 shadow text-center text-sm text-gray-500">Abhi koi transfer request nahi.</div>
+        )}
+        {transferRequests.map((t) => (
+          <div key={t.row} className={`bg-white rounded-xl p-4 shadow mb-3 border-l-4 ${t.status === 'Pending' ? 'border-yellow-400' : t.status === 'Approved' ? 'border-green-600' : 'border-red-500'}`}>
+            <p className="font-bold text-primary text-sm"> @{t.from} → @{t.to} : <span className="text-accent-dark">{t.coins} coins</span> {t.status !== 'Pending' && <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ml-1 ${t.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{t.status === 'Approved' ? '✅ Approved' : '❌ Rejected'}</span>}</p>
+            <p className="text-xs text-gray-400">{t.date} · Reason: {t.reason}</p>
+            {t.status === 'Pending' && (
+              <div className="flex flex-wrap items-center gap-2 mt-3">
+                <Button type="button" disabled={busyId === `tr${t.row}`} onClick={() => adminAction(`tr${t.row}`, 'transferApprove', { row: t.row })} className="!py-1.5 !px-4 bg-green-600 hover:bg-green-700">
+                  {busyId === `tr${t.row}` ? '…' : '✅ Approve Transfer'}
+                </Button>
+                <Button type="button" disabled={busyId === `tr${t.row}`} onClick={() => adminAction(`tr${t.row}`, 'transferReject', { row: t.row, note: notes[`tr${t.row}`] || '' })} className="!py-1.5 !px-4 bg-red-600 hover:bg-red-700">
+                  ❌ Reject
+                </Button>
+                <input className="input-sdsa w-44 !py-1.5" placeholder="Note (optional)" value={notes[`tr${t.row}`] || ''} onChange={(e) => setNotes((n) => ({ ...n, [`tr${t.row}`]: e.target.value }))} />
+              </div>
+            )}
+            {t.status !== 'Pending' && t.note && <p className="text-xs text-gray-400 mt-2">📝 {t.note}</p>}
+          </div>
+        ))}
       </div>
 
       {/* PENDING POSTS */}

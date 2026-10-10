@@ -122,7 +122,6 @@ export default function TrustDashboard() {
       </Card>
 
       <div className="text-center">
-        <Link to="/" className="text-xs text-accent-dark font-semibold underline">← Back to SDSA Website</Link>
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ import TrustDashboard from './pages/trust/Dashboard';
 import TrustMyPosts from './pages/trust/MyPosts';
 import TrustMyCoins from './pages/trust/MyCoins';
 import TrustMyProfile from './pages/trust/MyProfile';
+import TrustKyc from './pages/trust/Kyc';
 
 import ADashboard from './pages/admin/Dashboard';
 import ALogins from './pages/admin/Logins';
@@ -102,6 +103,7 @@ export default function App() {
       <Route path="/trust" element={<TrustRoute><TrustLayout /></TrustRoute>}>
         <Route index element={<Navigate to="/trust/dashboard" replace />} />
         <Route path="dashboard" element={<TrustDashboard />} />
+        <Route path="kyc" element={<TrustKyc />} />
         <Route path="posts" element={<TrustMyPosts />} />
         <Route path="coins" element={<TrustMyCoins />} />
         <Route path="profile" element={<TrustMyProfile />} />

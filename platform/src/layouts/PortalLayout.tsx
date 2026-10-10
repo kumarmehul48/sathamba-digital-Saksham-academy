@@ -84,7 +84,7 @@ export function TrustLayout() {
   return (
     <div className="min-h-screen bg-surface flex">
       <aside className="w-64 shrink-0 hidden md:flex flex-col bg-primary text-white">
-        <Link to="/" className="p-4 border-b border-white/10 flex items-center gap-2">
+        <Link to="/trust/dashboard" className="p-4 border-b border-white/10 flex items-center gap-2">
           <img src={asset("sdsa-trust-logo.webp")} alt="SDSA Trust" className="w-9 h-9 rounded-full object-cover border border-accent/60" />
           <span className="font-extrabold">SDSA Trust <span className="text-accent">Portal</span></span>
         </Link>
@@ -93,6 +93,7 @@ export function TrustLayout() {
           <NavLink to="/trust/posts" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>🤝 My Posts</NavLink>
           <NavLink to="/trust/coins" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>🪙 My Coins</NavLink>
           <NavLink to="/trust/profile" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>👤 My Profile</NavLink>
+          <NavLink to="/trust/kyc" end className={({ isActive }) => `block px-4 py-2.5 text-sm ${isActive ? 'bg-white/15 font-bold text-accent' : 'hover:bg-white/10'}`}>🆔 KYC</NavLink>
         </nav>
         <div className="p-4 border-t border-white/10">
           <p className="text-sm font-bold">{profile?.full_name}</p>
@@ -105,6 +106,7 @@ export function TrustLayout() {
           <NavLink to="/trust/posts" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Posts</NavLink>
           <NavLink to="/trust/coins" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Coins</NavLink>
           <NavLink to="/trust/profile" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>My Profile</NavLink>
+          <NavLink to="/trust/kyc" end className={({ isActive }) => `px-3 py-1.5 rounded-lg whitespace-nowrap ${isActive ? 'bg-white/20 font-bold' : ''}`}>KYC</NavLink>
           <button onClick={signOut} className="px-3 py-1.5 rounded-lg">Logout</button>
         </div>
         <div className="container-sdsa py-6"><Outlet /></div>

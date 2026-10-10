@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../lib/auth';
-import { Alert } from '../../components/ui';
+import { Alert, Button } from '../../components/ui';
 import { API_BASE } from '../../config';
 
 interface History { date: string; reason: string; coins: number; awardedBy: string; note: string }
+interface MyReq { date: string; to: string; coins: number; reason: string; status: string; note: string }
 
 export default function MyCoins() {
   const { session } = useAuth();
   const [balance, setBalance] = useState<number | null>(null);
   const [history, setHistory] = useState<History[]>([]);
   const [rules, setRules] = useState<string[][]>([]);
+  const [requests, setRequests] = useState<MyReq[]>([]);
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(true);
+  // transfer request form
+  const [tTo, setTTo] = useState('');
+  const [tCoins, setTCoins] = useState('');
+  const [tReason, setTReason] = useState('');
+  const [tBusy, setTBusy] = useState(false);
+  const [tMsg, setTMsg] = useState('');
 
   const username = session?.username || '';
   const password = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sdsa_trust_pw') || '' : '';
@@ -27,11 +35,33 @@ export default function MyCoins() {
         });
         const d = await r.json();
         if (!d.ok) setErr(d.error || 'Coins load nahi hue.');
-        else { setBalance(d.balance || 0); setHistory(d.history || []); setRules((d.rules || []).filter((r: string[]) => r[0])); }
+        else { setBalance(d.balance || 0); setHistory(d.history || []); setRules((d.rules || []).filter((r: string[]) => r[0])); setRequests(d.requests || []); }
       } catch { setErr('Network problem. Dobara try karo.'); }
       setLoading(false);
     })();
   }, []);
+
+  async function sendTransferRequest() {
+    setErr(''); setTMsg(''); setTBusy(true);
+    try {
+      const r = await fetch(`${API_BASE}/sdsaTrustPortal`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'transfer', username, password, to: tTo, coins: Number(tCoins || 0), reason: tReason }),
+      });
+      const d = await r.json();
+      if (!d.ok) setErr(d.error || 'Request nahi gayi.');
+      else { setTMsg(d.message); setTTo(''); setTCoins(''); setTReason('');
+        // reload
+        const rr = await fetch(`${API_BASE}/sdsaTrustPortal`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'read', username, password }),
+        });
+        const dd = await rr.json();
+        if (dd.ok) { setBalance(dd.balance || 0); setRequests(dd.requests || []); setHistory(dd.history || []); }
+      }
+    } catch { setErr('Network problem. Dobara try karo.'); }
+    setTBusy(false);
+  }
 
   if (!username || !password) {
     return (
@@ -56,6 +86,50 @@ export default function MyCoins() {
         )}
         <p className="text-xs text-white/60 mt-2">Admin approval ke baad coins milete hain · 1 post = 1 award</p>
       </div>
+
+      {/* Internal Transfer Request — member to member, admin approval zaroori */}
+      <div className="bg-white rounded-xl p-5 shadow border-l-4 border-accent">
+        <h3 className="font-bold text-primary mb-1">🔁 Send Coins to Member (Request)</h3>
+        <p className="text-xs text-gray-500 mb-3">Dusre member ko coins bhejne ke liye request bhejo — admin approve karega tabhi transfer hoga.</p>
+        {tMsg && <Alert tone="success">{tMsg}</Alert>}
+        <div className="flex flex-wrap gap-2 items-center">
+          <input className="input-sdsa w-44 !py-2" placeholder="To member username" value={tTo} onChange={(e) => setTTo(e.target.value)} />
+          <input type="number" min={1} max={500} className="input-sdsa w-24 !py-2" placeholder="Coins" value={tCoins} onChange={(e) => setTCoins(e.target.value)} />
+          <input className="input-sdsa w-52 !py-2" placeholder="Reason" value={tReason} onChange={(e) => setTReason(e.target.value)} />
+          <Button type="button" disabled={tBusy || !tTo || !tCoins || !tReason} onClick={sendTransferRequest} className="!py-2 !px-5">
+            {tBusy ? '…' : '🔁 Send Request'}
+          </Button>
+        </div>
+      </div>
+
+      {/* My Requests */}
+      {requests.length > 0 && (
+        <div>
+          <h3 className="font-bold text-primary mb-2">📤 My Transfer Requests</h3>
+          <div className="bg-white rounded-xl shadow overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 text-left text-xs uppercase text-gray-500">
+                <tr><th className="px-4 py-2">Date</th><th className="px-4 py-2">To</th><th className="px-4 py-2">Coins</th><th className="px-4 py-2">Reason</th><th className="px-4 py-2">Status</th></tr>
+              </thead>
+              <tbody>
+                {requests.map((rq, i) => (
+                  <tr key={i} className="border-t border-gray-100">
+                    <td className="px-4 py-2 text-gray-500 whitespace-nowrap">{rq.date}</td>
+                    <td className="px-4 py-2">@{rq.to}</td>
+                    <td className="px-4 py-2 font-bold text-primary">{rq.coins}</td>
+                    <td className="px-4 py-2">{rq.reason}{rq.note ? <span className="text-gray-400 text-xs"> · {rq.note}</span> : ''}</td>
+                    <td className="px-4 py-2">
+                      <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${rq.status === 'Approved' ? 'bg-green-100 text-green-700' : rq.status === 'Rejected' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                        {rq.status === 'Approved' ? '✅ Approved' : rq.status === 'Rejected' ? '❌ Rejected' : '⏳ Pending'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* History */}
       <div>
